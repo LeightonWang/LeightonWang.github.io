@@ -1,5 +1,34 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-10T18:40:37+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Leighton’s Blog</title><subtitle>Learning &amp; Sharing
-</subtitle><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><entry><title type="html">My First Blog</title><link href="http://localhost:4000/learning/2023/07/10/first-blog.html" rel="alternate" type="text/html" title="My First Blog" /><published>2023-07-10T00:00:00+08:00</published><updated>2023-07-10T00:00:00+08:00</updated><id>http://localhost:4000/learning/2023/07/10/first-blog</id><content type="html" xml:base="http://localhost:4000/learning/2023/07/10/first-blog.html"><![CDATA[<p>This is my first blog! Hello World!</p>]]></content><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><category term="learning" /><summary type="html"><![CDATA[This is my first blog! Hello World!]]></summary></entry><entry><title type="html">Welcome To Jekyll</title><link href="http://localhost:4000/2016/05/20/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome To Jekyll" /><published>2016-05-20T00:00:00+08:00</published><updated>2016-05-20T00:00:00+08:00</updated><id>http://localhost:4000/2016/05/20/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/2016/05/20/welcome-to-jekyll.html"><![CDATA[<p>You’ll find this post in your <code class="language-plaintext highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="language-plaintext highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-10T18:57:29+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Leighton’s Blog</title><subtitle>Learning &amp; Sharing
+</subtitle><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><entry><title type="html">Latex Support For My Blog</title><link href="http://localhost:4000/learning/2023/07/10/latex-support-for-my-blog.html" rel="alternate" type="text/html" title="Latex Support For My Blog" /><published>2023-07-10T00:00:00+08:00</published><updated>2023-07-10T00:00:00+08:00</updated><id>http://localhost:4000/learning/2023/07/10/latex-support-for-my-blog</id><content type="html" xml:base="http://localhost:4000/learning/2023/07/10/latex-support-for-my-blog.html"><![CDATA[<p>My blog has been established successfully today. However, Jekyll’s native Markdown interpreter doesn’t always work well with Latex. This article records how I add $\LaTeX$ support for my site.</p>
+
+<ul>
+  <li>Disable the math intepreter of Kramdown by adding the following code in _config.yml</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="ss">kramdown:
+    math_engine: </span><span class="n">null</span>
+    </code></pre></figure>
+
+<ul>
+  <li>Include MathJax by adding the following script in ./_includes/head.html</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">script</span> <span class="n">src</span><span class="o">=</span><span class="s2">"https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"</span> <span class="n">type</span><span class="o">=</span><span class="s2">"text/javascript"</span><span class="o">&gt;&lt;</span><span class="sr">/script&gt;
+&lt;script type="text/x</span><span class="o">-</span><span class="n">mathjax</span><span class="o">-</span><span class="n">config</span><span class="s2">"&gt;
+  MathJax.Hub.Config({
+    tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      inlineMath: [['$','$']]
+    }
+  });
+&lt;/script&gt;
+    </span></code></pre></figure>
+
+<p>Now we can enter the $\LaTeX$ equations successfully! For example:</p>
+
+<div class="kdmath">$$
+e^{i\theta}=\cos\theta+i\sin\theta
+$$</div>]]></content><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><category term="learning" /><summary type="html"><![CDATA[My blog has been established successfully today. However, Jekyll’s native Markdown interpreter doesn’t always work well with Latex. This article records how I add $\LaTeX$ support for my site.]]></summary></entry><entry><title type="html">My First Blog</title><link href="http://localhost:4000/learning/2023/07/10/first-blog.html" rel="alternate" type="text/html" title="My First Blog" /><published>2023-07-10T00:00:00+08:00</published><updated>2023-07-10T00:00:00+08:00</updated><id>http://localhost:4000/learning/2023/07/10/first-blog</id><content type="html" xml:base="http://localhost:4000/learning/2023/07/10/first-blog.html"><![CDATA[<p>This is my first blog! Hello World!</p>]]></content><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><category term="learning" /><summary type="html"><![CDATA[This is my first blog! Hello World!]]></summary></entry><entry><title type="html">Welcome To Jekyll</title><link href="http://localhost:4000/2016/05/20/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome To Jekyll" /><published>2016-05-20T00:00:00+08:00</published><updated>2016-05-20T00:00:00+08:00</updated><id>http://localhost:4000/2016/05/20/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/2016/05/20/welcome-to-jekyll.html"><![CDATA[<p>You’ll find this post in your <code class="language-plaintext highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="language-plaintext highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
 
 <p>To add new posts, simply add a file in the <code class="language-plaintext highlighter-rouge">_posts</code> directory that follows the convention <code class="language-plaintext highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
 
