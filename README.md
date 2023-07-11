@@ -1,3 +1,8 @@
+## Leighton's Blog
+芝士汪某的迫真博客，部署于 [这里](https://LeightonWang.github.io)，使用 Jekyll 书写，模板为 minima。
+
+以下为 minima 模板的 README 原内容。
+
 <div align="center">
   <p><em><strong>Disclaimer:</strong> The information here may vary depending on the version you're using.<br/>
   Please refer to the <code>README.md</code> bundled within the theme-gem for information specific to your version or by pointing
