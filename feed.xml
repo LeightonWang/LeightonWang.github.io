@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-13T21:58:43+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Leighton’s Blog</title><subtitle>Learning &amp; Sharing
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-13T22:09:32+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Leighton’s Blog</title><subtitle>Learning &amp; Sharing
 </subtitle><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><entry><title type="html">SLAM技术学习：滤波</title><link href="http://localhost:4000/learning/2023/07/13/filter.html" rel="alternate" type="text/html" title="SLAM技术学习：滤波" /><published>2023-07-13T00:00:00+08:00</published><updated>2023-07-13T00:00:00+08:00</updated><id>http://localhost:4000/learning/2023/07/13/filter</id><content type="html" xml:base="http://localhost:4000/learning/2023/07/13/filter.html"><![CDATA[<p>假期总该学点东西。对 SLAM 技术有一些兴趣，小开一个坑。</p>
 
 <h1 id="什么是-slam">什么是 SLAM</h1>
@@ -11,7 +11,7 @@
 <p>归结基于滤波的定位算法的核心技术，其实就是贝叶斯滤波或者其衍生算法。整体上的流程大抵都是基于上一时刻的状态量，通过控制量输入和运动方程的推演获取预测的状态量，再由相关传感器的观测对预测进行融合“补偿”。</p>
 
 <h1 id="滤波算法卡尔曼滤波">滤波算法：卡尔曼滤波</h1>
-<p>今天[=预习=]复习一下机器人综合实践课程中介绍的卡尔曼滤波算法。</p>
+<p>今天 <del>预习</del> 复习一下机器人综合实践课程中介绍的卡尔曼滤波算法。</p>
 
 <h3 id="滤波器">滤波器</h3>
 <p>在 DSP 中接触过滤波器。主要用于滤除信号中的噪声。以下面离散时间的低通滤波器为例：</p>
