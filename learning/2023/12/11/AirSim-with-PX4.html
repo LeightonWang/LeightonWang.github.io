@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>AirSim：PX4软件在环仿真 | Leighton’s Blog</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="AirSim：PX4软件在环仿真" />
+<meta name="author" content="Leighton Wang" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="今天被在 WSL2 上配置 PX4 困扰了许久，记录以下近几天解决该问题的过程。" />
+<meta property="og:description" content="今天被在 WSL2 上配置 PX4 困扰了许久，记录以下近几天解决该问题的过程。" />
+<link rel="canonical" href="http://localhost:4000/learning/2023/12/11/AirSim-with-PX4.html" />
+<meta property="og:url" content="http://localhost:4000/learning/2023/12/11/AirSim-with-PX4.html" />
+<meta property="og:site_name" content="Leighton’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-12-11T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="AirSim：PX4软件在环仿真" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Leighton Wang"},"dateModified":"2023-12-11T00:00:00+08:00","datePublished":"2023-12-11T00:00:00+08:00","description":"今天被在 WSL2 上配置 PX4 困扰了许久，记录以下近几天解决该问题的过程。","headline":"AirSim：PX4软件在环仿真","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/learning/2023/12/11/AirSim-with-PX4.html"},"url":"http://localhost:4000/learning/2023/12/11/AirSim-with-PX4.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Leighton&apos;s Blog" />
+</head>
+<body><header class="site-header">
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      inlineMath: [['$','$']]
+    }
+  });
+</script>
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Leighton&#39;s Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">AirSim：PX4软件在环仿真</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2023-12-11T00:00:00+08:00" itemprop="datePublished">
+        Dec 11, 2023
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>今天被在 WSL2 上配置 PX4 困扰了许久，记录以下近几天解决该问题的过程。</p>
+
+<h1 id="目的">目的</h1>
+<p>想要在 AirSim 仿真中使用 PX4 作为飞控。由于手边并没有 Pixhawk、树莓派之类的硬件，考虑使用 Windows Subsystem Linux 2 (WSL2) 作为 PX4 的载体。</p>
+
+<h1 id="wsl-安装">WSL 安装</h1>
+<ol>
+  <li>在 “Windows功能” 中勾选 “适用于 Linux 的 Windows 子系统” 与 “虚拟机平台” 两个选项</li>
+  <li>安装 Linux 发行版
+    <ol>
+      <li>在 PowerShell 中输入
+ <code class="language-plaintext highlighter-rouge">wsl --install</code>
+ 即可安装最新的 Ubuntu 发行版</li>
+      <li>按照提示创建账户与密码
+        <ul>
+          <li>遇到错误0x800701bc，需更新 WSL 内核至最新版本：https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi</li>
+        </ul>
+      </li>
+      <li>将 WSL 迁移至其他盘防止 C 盘爆炸
+        <ul>
+          <li>关闭当前 WSL
+ <code class="language-plaintext highlighter-rouge">wsl --shutdown</code></li>
+          <li>迁移
+ <code class="language-plaintext highlighter-rouge">wsl --export Ubuntu E:/export.tar</code></li>
+          <li>将原有的Linux卸载
+ <code class="language-plaintext highlighter-rouge">wsl --unregister Ubuntu</code></li>
+          <li>将导出的文件放到需要保存的地方，进行导入即可
+` wsl –import Ubuntu E:\export\ E:\export.tar –version 2`</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<h1 id="airsim-安装">AirSim 安装</h1>
+<p>此前已完成，此处不再赘述。可参考https://zhuanlan.zhihu.com/p/618440744</p>
+
+<h1 id="px4-安装与配置">PX4 安装与配置</h1>
+<ol>
+  <li>
+    <p>下载
+ 启动 WSL2，新建保存 PX4 的文件夹并进入
+ <code class="language-plaintext highlighter-rouge">mkdir PX4</code>
+ <code class="language-plaintext highlighter-rouge">cd PX4</code>
+ 使用 git 下载
+ <code class="language-plaintext highlighter-rouge">git clone https://github.com/PX4/PX4-Autopilot.git</code>
+ <code class="language-plaintext highlighter-rouge">cd PX4-Autopilot</code></p>
+  </li>
+  <li>在 SITL (Software-In-Loop) 模式下构建并启动 PX4 固件：
+ <code class="language-plaintext highlighter-rouge">make px4_sitl_default none_iris</code>
+    <ul>
+      <li>记得在构建似乎会显示缺少某个 Python Module，使用 pip 安装后重新执行词条命令即可</li>
+    </ul>
+  </li>
+  <li>
+    <p>构建完成后，Linux 命令行窗口应该会显示
+<code class="language-plaintext highlighter-rouge">INFO [simulator] Waiting for simulator to accpet connection on TPC port 4560</code>
+此时已构建完成，进入了运行状态，可以先使用 ctrl+C 退出运行。</p>
+  </li>
+  <li>更改 settings.json
+ 目前，我们的 AirSim 仍在 simple_flight 模式。我们需要更改主机中的 <code class="language-plaintext highlighter-rouge">文档/AirSim/settings.json</code>为以下内容：
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w"> </span><span class="p">{</span><span class="w">
+     </span><span class="nl">"SettingsVersion"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.2</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"SimMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Multirotor"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"ClockType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SteppableClock"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"Vehicles"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+         </span><span class="nl">"PX4"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+             </span><span class="nl">"VehicleType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PX4Multirotor"</span><span class="p">,</span><span class="w">
+             </span><span class="nl">"UseSerial"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+             </span><span class="nl">"LockStep"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+             </span><span class="nl">"UseTcp"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+             </span><span class="nl">"TcpPort"</span><span class="p">:</span><span class="w"> </span><span class="mi">4560</span><span class="p">,</span><span class="w">
+             </span><span class="nl">"ControlIp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"172.30.146.169"</span><span class="p">,</span><span class="w">
+             </span><span class="nl">"ControlPortLocal"</span><span class="p">:</span><span class="w"> </span><span class="mi">14540</span><span class="p">,</span><span class="w">
+             </span><span class="nl">"ControlPortRemote"</span><span class="p">:</span><span class="w"> </span><span class="mi">14580</span><span class="p">,</span><span class="w">
+             </span><span class="nl">"LocalHostIp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"172.30.144.1"</span><span class="p">,</span><span class="w">
+             </span><span class="nl">"Sensors"</span><span class="p">:{</span><span class="w">
+                 </span><span class="nl">"Barometer"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nl">"SensorType"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                     </span><span class="nl">"Enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                     </span><span class="nl">"PressureFactorSigma"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0001825</span><span class="w">
+                 </span><span class="p">}</span><span class="w">
+             </span><span class="p">},</span><span class="w">
+             </span><span class="nl">"Parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                 </span><span class="nl">"NAV_RCL_ACT"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                 </span><span class="nl">"NAV_DLL_ACT"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                 </span><span class="nl">"COM_OBL_ACT"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                 </span><span class="nl">"LPE_LAT"</span><span class="p">:</span><span class="w"> </span><span class="mf">47.641468</span><span class="p">,</span><span class="w">
+                 </span><span class="nl">"LPE_LON"</span><span class="p">:</span><span class="w"> </span><span class="mf">-122.140165</span><span class="w">
+             </span><span class="p">}</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+     </span><span class="p">}</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+    <p><strong>注意</strong>，<code class="language-plaintext highlighter-rouge">"LocalHostIp"</code> 与 <code class="language-plaintext highlighter-rouge">"ControlIp"</code> 字段分别应为主机和 WSL 的 IP 地址！</p>
+    <ul>
+      <li>在主机的命令行中输入 <code class="language-plaintext highlighter-rouge">ipconfig</code>，“以太网适配器 vEthernet (WSL)” 中的 “IPV4 地址” 即为主机地址</li>
+      <li>在 Linux 命令行中输入 <code class="language-plaintext highlighter-rouge">ip address show</code> 即可查看 WSL 的 IP 地址</li>
+    </ul>
+  </li>
+  <li>
+    <p>设置环境变量
+我们需要让 Linux 指导自己在和谁通讯，故在 Linux 命令行中输入以下命令以添加（或改变）环境变量
+<code class="language-plaintext highlighter-rouge">export PX4_SIM_HOST_ADDR=172.30.144.1</code>
+注意，此处的 IP 地址应为主机 IP。</p>
+  </li>
+  <li>更改 Linux 中的 <code class="language-plaintext highlighter-rouge">PX4-Autopilot/ROMFS/px4fmu_common/init.d-posix/rcS</code> 文件
+更改这个文件之前，我一度出现了 PX4 与 AirSim 无法连接、成功连接后无法使用 Python API 等问题。经过仔细阅读官方文档中的 “PX4 SITL with WSL2”，发现了此处需要更改，原因未知（悲）。如果没有以下内容，则将它们加入到该文件中：
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> # If PX4_SIM_HOST_ADDR environment variable is empty use localhost.
+ if [ -z "${PX4_SIM_HOST_ADDR}" ]; then
+     echo "PX4 SIM HOST: localhost"
+     simulator start -c $simulator_tcp_port
+ else
+     echo "PX4 SIM HOST: $PX4_SIM_HOST_ADDR"
+     simulator start -t $PX4_SIM_HOST_ADDR $simulator_tcp_port
+ fi
+</code></pre></div>    </div>
+  </li>
+  <li>完成后，启动 sln 文件的调试以进入 UE4 编辑器，并在 Linux 中启动 PX4：
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> make px4_sitl_defalut none_iris
+</code></pre></div>    </div>
+    <p>我们就完成了 PX4 作为飞控的 AirSim 仿真啦！</p>
+  </li>
+</ol>
+
+<h1 id="使用">使用</h1>
+<ul>
+  <li>可以在 PX4 端输入命令以控制无人机，如 <code class="language-plaintext highlighter-rouge">commander takeoff</code> 可控制无人机起飞，<code class="language-plaintext highlighter-rouge">commander land</code> 可控制无人机降落。</li>
+  <li>调用 Python API 的操作与使用 simple_flight 模式下相同，直接运行 Python 脚本即可！</li>
+</ul>
+
+  </div><a class="u-url" href="/learning/2023/12/11/AirSim-with-PX4.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <!-- <p class="feed-subscribe">
+          <a href="http://localhost:4000/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p> -->
+        <ul class="contact-list">
+          <li class="p-name">Leighton Wang</li>
+          <li><a class="u-email" href="mailto:wtrwang7@sjtu.edu.cn">wtrwang7@sjtu.edu.cn</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Learning &amp; Sharing
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li>
+  <a rel="me" href="https://github.com/LeightonWang" target="_blank" title="github">
+    <svg class="svg-icon grey">
+      <use xlink:href="/assets/minima-social-icons.svg#github"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://space.bilibili.com/8367854" target="_blank" title="youtube">
+    <svg class="svg-icon grey">
+      <use xlink:href="/assets/minima-social-icons.svg#youtube"></use>
+    </svg>
+  </a>
+</li>
+</ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
