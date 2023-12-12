@@ -3,21 +3,21 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Leighton’s Blog | Learning &amp; Sharing</title>
+<title>归档 | Leighton’s Blog</title>
 <meta name="generator" content="Jekyll v4.3.2" />
-<meta property="og:title" content="Leighton’s Blog" />
+<meta property="og:title" content="归档" />
 <meta name="author" content="Leighton Wang" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Learning &amp; Sharing" />
 <meta property="og:description" content="Learning &amp; Sharing" />
-<link rel="canonical" href="http://localhost:4000/" />
-<meta property="og:url" content="http://localhost:4000/" />
+<link rel="canonical" href="http://localhost:4000/categories/" />
+<meta property="og:url" content="http://localhost:4000/categories/" />
 <meta property="og:site_name" content="Leighton’s Blog" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Leighton’s Blog" />
+<meta property="twitter:title" content="归档" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Leighton Wang"},"description":"Learning &amp; Sharing","headline":"Leighton’s Blog","name":"Leighton’s Blog","url":"http://localhost:4000/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Leighton Wang"},"description":"Learning &amp; Sharing","headline":"归档","url":"http://localhost:4000/categories/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Leighton&apos;s Blog" />
 <link rel="icon" type="image/png" sizes="16x16"  href="/favicons/favicon-16x16.png">
@@ -50,55 +50,64 @@
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <div class="home">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">归档</h1>
+  </header>
+
+  <div class="post-content">
+    <!--添加搜索框-->
+<br/>
+<!-- HTML elements for search -->
+<input type="text" id="search-input" placeholder="搜索功能暂未完成" style="width:380px;"/>
+<ul id="results-container"></ul>
+
+<!-- script pointing to jekyll-search.js -->
+<script src="/js/simple-jekyll-search.min.js"></script>
+
+<script>
+SimpleJekyllSearch({
+    searchInput: document.getElementById('search-input'),
+    resultsContainer: document.getElementById('results-container'),
+    json: '/search.json',
+    searchResultTemplate: '<li><a href="{url}" title="{desc}">{title}</a></li>',
+    noResultsText: '没有搜索到文章',
+    limit: 20,
+    fuzzy: false
+  })
+</script>
+<br/>
 
 
-  <ul class="post-list"><li>
-        <span class="post-meta">Dec 12, 2023</span>
-        <h3>
-          <a class="post-link" href="/jekyll/Image-Support/">
-            博客的图片支持测试
-          </a>
-        </h3></li><li>
-        <span class="post-meta">Dec 11, 2023</span>
-        <h3>
-          <a class="post-link" href="/airsim/AirSim-with-PX4/">
-            AirSim：PX4软件在环仿真
-          </a>
-        </h3></li><li>
-        <span class="post-meta">Jul 13, 2023</span>
-        <h3>
-          <a class="post-link" href="/misc/filter/">
-            SLAM技术学习：滤波
-          </a>
-        </h3></li><li>
-        <span class="post-meta">Jul 10, 2023</span>
-        <h3>
-          <a class="post-link" href="/jekyll/latex-support-for-my-blog/">
-            Latex Support For My Blog
-          </a>
-        </h3></li><li>
-        <span class="post-meta">Jul 10, 2023</span>
-        <h3>
-          <a class="post-link" href="/jekyll/first-blog/">
-            My First Blog
-          </a>
-        </h3></li><li>
-        <span class="post-meta">May 20, 2016</span>
-        <h3>
-          <a class="post-link" href="/jekyll/welcome-to-jekyll/">
-            Welcome To Jekyll
-          </a>
-        </h3></li></ul>
+<div id="archives"><div class="archive-group"><div id="#Jekyll"></div>
+    <p></p>
 
-    
-      <div class="pager">
-        <ul class="pagination">
-          <li><div class="pager-edge">•</div></li>
-          <li><div class="current-page">1</div></li>
-          <li><div class="pager-edge">•</div></li>
-        </ul>
-      </div></div>
+    <h3 class="category-head">Jekyll (4)</h3>
+    <a name="Jekyll"></a><article class="archive-item">
+      <h4><a href="/jekyll/Image-Support/">博客的图片支持测试</a></h4>
+    </article><article class="archive-item">
+      <h4><a href="/jekyll/latex-support-for-my-blog/">Latex Support For My Blog</a></h4>
+    </article><article class="archive-item">
+      <h4><a href="/jekyll/first-blog/">My First Blog</a></h4>
+    </article><article class="archive-item">
+      <h4><a href="/jekyll/welcome-to-jekyll/">Welcome To Jekyll</a></h4>
+    </article></div><div class="archive-group"><div id="#MISC"></div>
+    <p></p>
+
+    <h3 class="category-head">MISC (1)</h3>
+    <a name="MISC"></a><article class="archive-item">
+      <h4><a href="/misc/filter/">SLAM技术学习：滤波</a></h4>
+    </article></div><div class="archive-group"><div id="#AirSim"></div>
+    <p></p>
+
+    <h3 class="category-head">AirSim (1)</h3>
+    <a name="AirSim"></a><article class="archive-item">
+      <h4><a href="/airsim/AirSim-with-PX4/">AirSim：PX4软件在环仿真</a></h4>
+    </article></div></div>
+  </div>
+
+</article>
 
       </div>
     </main><footer class="site-footer h-card">

@@ -3,21 +3,22 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>关于本站 | Leighton’s Blog</title>
+<title>Latex Support For My Blog | Leighton’s Blog</title>
 <meta name="generator" content="Jekyll v4.3.2" />
-<meta property="og:title" content="关于本站" />
+<meta property="og:title" content="Latex Support For My Blog" />
 <meta name="author" content="Leighton Wang" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Learning &amp; Sharing" />
-<meta property="og:description" content="Learning &amp; Sharing" />
-<link rel="canonical" href="http://localhost:4000/about/" />
-<meta property="og:url" content="http://localhost:4000/about/" />
+<meta name="description" content="My blog has been established successfully today. However, Jekyll’s native Markdown interpreter doesn’t always work well with Latex. This article records how I add $\LaTeX$ support for my site." />
+<meta property="og:description" content="My blog has been established successfully today. However, Jekyll’s native Markdown interpreter doesn’t always work well with Latex. This article records how I add $\LaTeX$ support for my site." />
+<link rel="canonical" href="http://localhost:4000/jekyll/latex-support-for-my-blog/" />
+<meta property="og:url" content="http://localhost:4000/jekyll/latex-support-for-my-blog/" />
 <meta property="og:site_name" content="Leighton’s Blog" />
-<meta property="og:type" content="website" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-07-10T00:00:00+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="关于本站" />
+<meta property="twitter:title" content="Latex Support For My Blog" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Leighton Wang"},"description":"Learning &amp; Sharing","headline":"关于本站","name":"Leighton’s Blog","url":"http://localhost:4000/about/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Leighton Wang"},"dateModified":"2023-07-10T00:00:00+08:00","datePublished":"2023-07-10T00:00:00+08:00","description":"My blog has been established successfully today. However, Jekyll’s native Markdown interpreter doesn’t always work well with Latex. This article records how I add $\\LaTeX$ support for my site.","headline":"Latex Support For My Blog","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/latex-support-for-my-blog/"},"url":"http://localhost:4000/jekyll/latex-support-for-my-blog/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Leighton&apos;s Blog" />
 <link rel="icon" type="image/png" sizes="16x16"  href="/favicons/favicon-16x16.png">
@@ -50,50 +51,51 @@
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <article class="post">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title">关于本站</h1>
-  </header>
+    <h1 class="post-title p-name" itemprop="name headline">Latex Support For My Blog</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2023-07-10T00:00:00+08:00" itemprop="datePublished">
+        Jul 10, 2023
+      </time></p>
 
-  <div class="post-content">
-    <h2 id="这里是">这里是？</h2>
-<p>这是一个博客网站，基于 Github Pages，使用 Jekyll 书写。</p>
+      
+		  <div class="blog-tags">
+		  归档：<a href="/categories/#Jekyll">Jekyll</a></div></header>
 
-<h2 id="我是谁">我是谁</h2>
-<p>我是中国一个不知名大学生，在学术上代表母校最低水平。</p>
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>My blog has been established successfully today. However, Jekyll’s native Markdown interpreter doesn’t always work well with Latex. This article records how I add $\LaTeX$ support for my site.</p>
+
 <ul>
-  <li>上海交通大学 自动化
-    <ul>
-      <li>编程语言：Python、C++、MATLAB</li>
-      <li>擅长领域：什么都不擅长</li>
-      <li>科研兴趣：没有什么兴趣</li>
-    </ul>
-  </li>
-  <li>人菜瘾大的游戏玩家
-    <ul>
-      <li>Apex 白银本地人，CS 马枪怪</li>
-      <li>GTA 刺客信条 看门狗</li>
-      <li>都市天际线</li>
-      <li>…</li>
-    </ul>
-  </li>
-  <li>语言
-    <ul>
-      <li>会说英语，不太烂</li>
-      <li>日语苦手</li>
-    </ul>
-  </li>
-  <li>足球迷，纯正阿萨塔(迈)</li>
+  <li>Disable the math intepreter of Kramdown by adding the following code in _config.yml</li>
 </ul>
 
-<h2 id="这里有什么">这里有什么？</h2>
-<p>这里杂乱无章，我想应该会有一些学习的内容，或许也会分享一下我的生活。鉴于本人懒狗一条，更新完全随缘（反正大概也没有人看QwQ）。
-网页的样式似乎也没有什么美感，因为我的基本没有什么前端知识（悲），也许以后能让这个博客更美观一些。</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="ss">kramdown:
+    math_engine: </span><span class="n">null</span>
+    </code></pre></figure>
 
+<ul>
+  <li>Include MathJax by adding the following script in ./_includes/head.html</li>
+</ul>
 
-  </div>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">script</span> <span class="n">src</span><span class="o">=</span><span class="s2">"https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"</span> <span class="n">type</span><span class="o">=</span><span class="s2">"text/javascript"</span><span class="o">&gt;&lt;</span><span class="sr">/script&gt;
+&lt;script type="text/x</span><span class="o">-</span><span class="n">mathjax</span><span class="o">-</span><span class="n">config</span><span class="s2">"&gt;
+  MathJax.Hub.Config({
+    tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      inlineMath: [['$','$']]
+    }
+  });
+&lt;/script&gt;
+    </span></code></pre></figure>
 
+<p>Now we can enter the $\LaTeX$ equations successfully! For example:</p>
+
+<div class="kdmath">$$
+e^{i\theta}=\cos\theta+i\sin\theta
+$$</div>
+
+  </div><a class="u-url" href="/jekyll/latex-support-for-my-blog/" hidden></a>
 </article>
 
       </div>
