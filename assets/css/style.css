@@ -222,6 +222,7 @@ body {
   min-height: 100vh;
   flex-direction: column;
   overflow-wrap: break-word;
+  z-index: 1;
 }
 
 /**
@@ -443,7 +444,11 @@ table td {
   border-bottom: 1px solid #e8e8e8;
   min-height: 55.95px;
   line-height: 54px;
-  position: relative;
+  position: fixed;
+  background-color: aquamarine;
+  width: 100%;
+  z-index: 999;
+  overflow: auto;
 }
 
 .site-title {
@@ -742,6 +747,9 @@ table td {
   .one-half {
     width: calc(50% - 30px / 2);
   }
+}
+main.page-content {
+  margin-top: 55.95px;
 }
 
 /*# sourceMappingURL=style.css.map */
