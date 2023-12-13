@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>博客搭建相关总集 | Leighton’s Blog</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="博客搭建相关总集" />
+<meta name="author" content="Leighton Wang" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="之前添加各种功能的时候零散地写了几篇东西，似乎很没有条理的样子。以后博客建设的相关内容都会集中在这里，也许会持续更新( ᐛ )" />
+<meta property="og:description" content="之前添加各种功能的时候零散地写了几篇东西，似乎很没有条理的样子。以后博客建设的相关内容都会集中在这里，也许会持续更新( ᐛ )" />
+<link rel="canonical" href="http://localhost:4000/jekyll/site-build-summary/" />
+<meta property="og:url" content="http://localhost:4000/jekyll/site-build-summary/" />
+<meta property="og:site_name" content="Leighton’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-12-13T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="博客搭建相关总集" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Leighton Wang"},"dateModified":"2023-12-13T00:00:00+08:00","datePublished":"2023-12-13T00:00:00+08:00","description":"之前添加各种功能的时候零散地写了几篇东西，似乎很没有条理的样子。以后博客建设的相关内容都会集中在这里，也许会持续更新( ᐛ )","headline":"博客搭建相关总集","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/site-build-summary/"},"url":"http://localhost:4000/jekyll/site-build-summary/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Leighton&apos;s Blog" />
+<link rel="icon" type="image/png" sizes="16x16"  href="/favicons/favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff"></head>
+<body><header class="site-header">
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      inlineMath: [['$','$']]
+    }
+  });
+</script>
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Leighton&#39;s Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">关于本站</a><a class="page-link" href="/categories/">归档</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">博客搭建相关总集</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2023-12-13T00:00:00+08:00" itemprop="datePublished">
+        Dec 13, 2023
+      </time></p>
+
+      
+		  <div class="blog-tags">
+		  归档：<a href="/categories/#Jekyll">Jekyll</a></div></header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>之前添加各种功能的时候零散地写了几篇东西，似乎很没有条理的样子。以后博客建设的相关内容都会集中在这里，也许会持续更新( ᐛ )</p>
+
+<h1 id="latex-支持">$\LaTeX$ 支持</h1>
+<p>首先要解决的就是 Jekyll 博客原生不支持 LaTeX 的问题，过程如下：</p>
+<ul>
+  <li>首先需要禁用 Kramdown 的数学引擎，做法为在 <code class="language-plaintext highlighter-rouge">_config.yml</code> 中添加以下代码</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="ss">kramdown:
+    math_engine: </span><span class="n">null</span>
+    </code></pre></figure>
+
+<ul>
+  <li>添加 MathJax 支持，做法为在 <code class="language-plaintext highlighter-rouge">\_includes\head.html</code> 中添加以下代码：</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">script</span> <span class="n">src</span><span class="o">=</span><span class="s2">"https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"</span> <span class="n">type</span><span class="o">=</span><span class="s2">"text/javascript"</span><span class="o">&gt;&lt;</span><span class="sr">/script&gt;
+&lt;script type="text/x</span><span class="o">-</span><span class="n">mathjax</span><span class="o">-</span><span class="n">config</span><span class="s2">"&gt;
+  MathJax.Hub.Config({
+    tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      inlineMath: [['$','$']]
+    }
+  });
+&lt;/script&gt;
+    </span></code></pre></figure>
+
+<p>现在我们可以愉快地书写数学公式啦！</p>
+<ul>
+  <li>例
+    <ul>
+      <li>$\LaTeX$ 代码
+        <div class="language-LaTeX highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="p">$$</span><span class="nb">H</span><span class="o">(</span><span class="nb">e</span><span class="p">^{</span><span class="nb">j</span><span class="nv">\omega</span><span class="p">}</span><span class="o">)=</span><span class="nv">\int</span><span class="p">_{</span><span class="o">-</span><span class="nv">\infty</span><span class="p">}^</span><span class="nv">\infty</span><span class="nb"> x</span><span class="o">(</span><span class="nb">t</span><span class="o">)</span><span class="nb">e</span><span class="p">^{</span><span class="o">-</span><span class="nb">j</span><span class="nv">\omega</span><span class="nb"> t</span><span class="p">}{</span><span class="nv">\rm</span><span class="nb"> d</span><span class="p">}</span><span class="nb">x</span><span class="p">$$</span>
+</code></pre></div>        </div>
+      </li>
+      <li>输出</li>
+    </ul>
+
+    <div class="kdmath">$$
+H(e^{j\omega})=\int_{-\infty}^\infty h(t)e^{-j\omega t}{\rm d}t
+$$</div>
+  </li>
+</ul>
+
+<hr />
+
+<h1 id="添加图片的方法">添加图片的方法</h1>
+<p>根据 <a href="https://jekyllcn.com/docs/posts/">Jekyll 官方文档</a>，添加图片应使用如下代码：</p>
+<pre><code class="language-Markdown">![有帮助的截图](http://localhost:4000/assets/images/RailwayMap.jpg)
+</code></pre>
+<p>然而经过实测，这种方法虽然可以在本地使用 <code class="language-plaintext highlighter-rouge">jekyll s</code> 命令预览时显示图片，部署到 GitHub 后却无法显示。对 GitHub Page 进行检查后发现，该图片元素的连接仍然为 <code class="language-plaintext highlighter-rouge">localhost:4000/assets/images/RailwayMap.png</code>。</p>
+
+<p>经查证与实践，官方文档中给出的代码中的 <code class="language-plaintext highlighter-rouge">http://localhost:4000</code> 并无必要，直接使用后面的相对路径即可：</p>
+<pre><code class="language-Markdown">![有帮助的截图](/assets/images/RailwayMap.png)
+</code></pre>
+<p>渲染效果：
+<img src="/assets/images/RailwayMap.png" alt="有帮助的截图" /></p>
+
+<hr />
+
+<h1 id="博客分页">博客分页</h1>
+<p>所有博客都显示在同一页难免显得冗长，因此我们需要分页功能。</p>
+
+<p>根据官方文档：</p>
+<ul>
+  <li>
+    <p>我们首先需要安装 <code class="language-plaintext highlighter-rouge">jekyll-paginate</code> 插件。在根目录下执行以下命令：</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  gem install jekyll-paginate
+  bundle
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>在根目录中的 <code class="language-plaintext highlighter-rouge">Gemfile </code>中添加：</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  gem "jekyll-paginate"
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>在 <code class="language-plaintext highlighter-rouge">_config.yml</code> 中添加以下代码，开启分页功能并设置每页存储10篇博客</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  paginate: 10
+  paginate_path: "page:num"
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>官方文档的教程到此为止。然而这样并不能够在我的模板中运行。我在<a href="https://huangjieqi.gitee.io/huangjieqi/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/2019/06/27/Study-Notes_jekyll_Pagination.html">这篇博客</a>中找到了解决方法。所需的额外步骤如下：</p>
+<ul>
+  <li>文章的分页显示都需要在html文档中进行，所以需要将<code class="language-plaintext highlighter-rouge">index.md</code>修改为<code class="language-plaintext highlighter-rouge">index.html</code></li>
+  <li>
+    <p>为<code class="language-plaintext highlighter-rouge">index.html</code>添加分页支持：</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ---
+  layout: home
+  paginate: true
+  ---
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>现在博客就具有翻页的功能啦：（目前文章较少，一页都能放下）
+<img src="/assets/images/paginate.png" alt="翻页" /></p>
+
+<hr />
+
+<h1 id="博客归档">博客归档</h1>
+<p>为博客添加归档可以清晰分辨出文章的类别。我参考了<a href="https://zoharandroid.github.io/2019-08-02-Jekyll%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BBCategory%E5%8A%9F%E8%83%BD/">这篇博客</a>中的教程。</p>
+
+<ul>
+  <li>
+    <p>修改 <code class="language-plaintext highlighter-rouge">_config.yml</code> 文件，添加以下一行代码：</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  permalink: /:categories/:title/
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>创建 categories.html 文件</strong>：在根目录下创建<code class="language-plaintext highlighter-rouge">categories.html</code>文件，并写入以下内容：</p>
+
+    <pre><code class="language-HTML">  ---
+  layout: page
+  permalink: /categories/
+  title: 博客分类
+  ---
+
+  &lt;!--添加搜索框--&gt;
+  &lt;br/&gt;
+  &lt;!-- HTML elements for search --&gt;
+  &lt;input type="text" id="search-input" placeholder="搜索博客 - 输入标题/相关内容/日期/Tags.." style="width:380px;"/&gt;
+  &lt;ul id="results-container"&gt;&lt;/ul&gt;
+
+  &lt;!-- script pointing to jekyll-search.js --&gt;
+  &lt;script src="\{\{ site.baseurl \}\}/js/simple-jekyll-search.min.js"&gt;&lt;/script&gt;
+
+  &lt;script&gt;
+  SimpleJekyllSearch({
+      searchInput: document.getElementById('search-input'),
+      resultsContainer: document.getElementById('results-container'),
+      json: '/search.json',
+      searchResultTemplate: '&lt;li&gt;&lt;a href="{url}" title="{desc}"&gt;{title}&lt;/a&gt;&lt;/li&gt;',
+      noResultsText: '没有搜索到文章',
+      limit: 20,
+      fuzzy: false
+  })
+  &lt;/script&gt;
+  &lt;br/&gt;
+
+
+  &lt;div id="archives"&gt;
+  {\%\for category in site.categories \%\}
+  &lt;div class="archive-group"&gt;
+      {\%\capture category_name \%\}\{\{ category | first \}\}{\%\endcapture \%\}
+      &lt;div id="#\{\{ category_name | slugize \}\}"&gt;&lt;/div&gt;
+      &lt;p&gt;&lt;/p&gt;
+
+      &lt;h3 class="category-head"&gt;\{\{ category_name \}\} (\{\{site.categories[category_name].size()\}\})&lt;/h3&gt;
+      &lt;a name="\{\{ category_name | slugize \}\}"&gt;&lt;/a&gt;
+      {\%\for post in site.categories[category_name] \%\}
+      &lt;article class="archive-item"&gt;
+      &lt;h4&gt;&lt;a href="\{\{ site.baseurl \}\}\{\{ post.url \}\}"&gt;\{\{ post.title \}\}&lt;/a&gt;&lt;/h4&gt;
+      &lt;/article&gt;
+      {\%\endfor \%\}
+  &lt;/div&gt;
+  {\%\endfor \%\}
+  &lt;/div&gt;
+</code></pre>
+    <p>搜索功能的代码暂时缺失，想起来的时候再加上吧 :P</p>
+  </li>
+  <li>
+    <p>为每篇文章的 md 文件都添加一个<code class="language-plaintext highlighter-rouge">categories</code>属性，以这篇文章为例：</p>
+
+    <pre><code class="language-Markdown">  ---
+  layout: post
+  title: "博客搭建相关总集"
+  categories: Jekyll
+  ---
+</code></pre>
+
+    <p>至此，归档页面就搭建成功啦！</p>
+  </li>
+  <li>
+    <p>然而到这里我们却还不能在每篇文章中看出它的归档，我想让每篇文章都能直接显示出它的归档。在<code class="language-plaintext highlighter-rouge">/_layouts/post.html</code>的 <code class="language-plaintext highlighter-rouge">&lt;\header&gt;</code>标签<strong>之前</strong>添加以下代码：</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  {\%\if page.categories.size &gt; 0 \%\}
+          &lt;div class="blog-tags"&gt;
+          Category：
+          {\%\if post \%\}
+              {\%\assign categories = post.categories \%\}
+          {\%\else \%\}
+              {\%\assign categories = page.categories \%\}
+          {\%\endif \%\}
+          {\%\for category in categories \%\}
+              &lt;a href="\{\{site.baseurl\}\}/categories/#\{\{category|slugize\}\}"&gt;\{\{category\}\}&lt;/a&gt;
+              {\%\unless forloop.last \%\}&amp;nbsp;{\%\endunless \%\}
+              {\%\endfor \%\}
+          &lt;/div&gt;
+      {\%\endif \%\}
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>大功告成啦：</p>
+
+<p><img src="/assets/images/categories_result.png" alt="文章显示归档" /></p>
+
+  </div><a class="u-url" href="/jekyll/site-build-summary/" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <!-- <p class="feed-subscribe">
+          <a href="http://localhost:4000/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p> -->
+        <ul class="contact-list">
+          <li class="p-name">Leighton Wang</li>
+          <li><a class="u-email" href="mailto:wtrwang7@sjtu.edu.cn">wtrwang7@sjtu.edu.cn</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Learning &amp; Sharing
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li>
+  <a rel="me" href="https://github.com/LeightonWang" target="_blank" title="github">
+    <svg class="svg-icon grey">
+      <use xlink:href="/assets/minima-social-icons.svg#github"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://space.bilibili.com/8367854" target="_blank" title="youtube">
+    <svg class="svg-icon grey">
+      <use xlink:href="/assets/minima-social-icons.svg#youtube"></use>
+    </svg>
+  </a>
+</li>
+</ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
