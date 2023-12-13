@@ -49,24 +49,7 @@
         <div class="trigger"><a class="page-link" href="/about/">关于本站</a><a class="page-link" href="/categories/">归档</a></div>
       </nav></div>
 </header>
-<!-- <script>
-      // 在页面加载时检查滚动位置设置初始透明度
-      document.addEventListener("DOMContentLoaded", function () {
-        var header = document.querySelector(".site-header");
-        var scrollPosition = window.scrollY;
-        var opacity = scrollPosition === 0 ? 0 : 1;
-        header.style.backgroundColor = "rgba(127, 255, 212, " + opacity + ")";
-  
-        // 监听滚动事件
-        document.addEventListener("scroll", function () {
-          scrollPosition = window.scrollY;
-          opacity = Math.min(scrollPosition / 200, 1);
-          header.style.backgroundColor = "rgba(127, 255, 212, " + opacity + ")";
-        });
-      });
-    </script> -->
-
-    <script>
+<script>
       document.addEventListener("scroll", function () {
         var scrollPosition = window.scrollY;
   
@@ -98,6 +81,11 @@
       
 		  <div class="blog-tags">
 		  归档：<a href="/categories/#AirSim">AirSim</a></div></header>
+
+  <HR>
+  <p>目录</p>
+  <ul><li><a href="#目的">目的</a></li><li><a href="#wsl-安装">WSL 安装</a></li><li><a href="#airsim-安装">AirSim 安装</a></li><li><a href="#px4-安装与配置">PX4 安装与配置</a></li><li><a href="#使用">使用</a></li></ul>
+  <HR>
 
   <div class="post-content e-content" itemprop="articleBody">
     <p>今天被在 WSL2 上配置 PX4 困扰了许久，记录以下近几天解决该问题的过程。</p>

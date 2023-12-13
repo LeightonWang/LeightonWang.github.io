@@ -49,24 +49,7 @@
         <div class="trigger"><a class="page-link" href="/about/">关于本站</a><a class="page-link" href="/categories/">归档</a></div>
       </nav></div>
 </header>
-<!-- <script>
-      // 在页面加载时检查滚动位置设置初始透明度
-      document.addEventListener("DOMContentLoaded", function () {
-        var header = document.querySelector(".site-header");
-        var scrollPosition = window.scrollY;
-        var opacity = scrollPosition === 0 ? 0 : 1;
-        header.style.backgroundColor = "rgba(127, 255, 212, " + opacity + ")";
-  
-        // 监听滚动事件
-        document.addEventListener("scroll", function () {
-          scrollPosition = window.scrollY;
-          opacity = Math.min(scrollPosition / 200, 1);
-          header.style.backgroundColor = "rgba(127, 255, 212, " + opacity + ")";
-        });
-      });
-    </script> -->
-
-    <script>
+<script>
       document.addEventListener("scroll", function () {
         var scrollPosition = window.scrollY;
   
@@ -98,6 +81,11 @@
       
 		  <div class="blog-tags">
 		  归档：<a href="/categories/#MISC">MISC</a></div></header>
+
+  <HR>
+  <p>目录</p>
+  <ul><li><a href="#什么是-slam">什么是 SLAM</a></li><li><a href="#基于滤波的传感器融合算法方案">基于滤波的传感器融合算法方案</a></li><li><a href="#滤波算法卡尔曼滤波">滤波算法：卡尔曼滤波</a><ul><li><a href="#滤波器">滤波器</a></li><li><a href="#最小协方差估计与后验概率传递">最小协方差估计与后验概率传递</a></li><li><a href="#kalman-滤波的数学原理">Kalman 滤波的数学原理</a></li></ul></li></ul></li></ul>
+  <HR>
 
   <div class="post-content e-content" itemprop="articleBody">
     <p>假期总该学点东西。对 SLAM 技术有一些兴趣，小开一个坑。</p>

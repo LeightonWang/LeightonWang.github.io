@@ -49,24 +49,7 @@
         <div class="trigger"><a class="page-link" href="/about/">关于本站</a><a class="page-link" href="/categories/">归档</a></div>
       </nav></div>
 </header>
-<!-- <script>
-      // 在页面加载时检查滚动位置设置初始透明度
-      document.addEventListener("DOMContentLoaded", function () {
-        var header = document.querySelector(".site-header");
-        var scrollPosition = window.scrollY;
-        var opacity = scrollPosition === 0 ? 0 : 1;
-        header.style.backgroundColor = "rgba(127, 255, 212, " + opacity + ")";
-  
-        // 监听滚动事件
-        document.addEventListener("scroll", function () {
-          scrollPosition = window.scrollY;
-          opacity = Math.min(scrollPosition / 200, 1);
-          header.style.backgroundColor = "rgba(127, 255, 212, " + opacity + ")";
-        });
-      });
-    </script> -->
-
-    <script>
+<script>
       document.addEventListener("scroll", function () {
         var scrollPosition = window.scrollY;
   
@@ -98,6 +81,11 @@
       
 		  <div class="blog-tags">
 		  归档：<a href="/categories/#Jekyll">Jekyll</a></div></header>
+
+  <HR>
+  <p>目录</p>
+  
+  <HR>
 
   <div class="post-content e-content" itemprop="articleBody">
     <p>You’ll find this post in your <code class="language-plaintext highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="language-plaintext highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>

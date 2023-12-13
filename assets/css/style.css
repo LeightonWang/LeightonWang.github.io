@@ -773,4 +773,85 @@ main.page-content {
   overflow: auto;
 }
 
+.ScrollNav {
+  position: sticky;
+  top: 30%;
+  margin-left: -300px;
+  border-radius: 5px;
+  width: 200px;
+  height: auto;
+  border: 2px solid rgb(247, 247, 247);
+  background-color: rgb(247, 247, 247);
+}
+
+.container {
+  display: flex;
+}
+
+.scroll-nav {
+  background-color: #f8f9fa;
+  border: 1px solid #a2a9b1;
+  padding: 15px 10px;
+  position: sticky;
+  top: 10px;
+}
+@media screen and (min-width: 700px) {
+  .scroll-nav {
+    float: left;
+    padding: 15px 10px;
+    width: 200px;
+    top: 60px;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .scroll-nav {
+    width: 300px;
+  }
+}
+
+.scroll-nav__list {
+  margin: 0;
+  padding-left: 1.4em;
+  list-style-type: none;
+}
+
+.scroll-nav__item {
+  margin-bottom: 5px;
+}
+
+.scroll-nav__item--active {
+  font-weight: 600;
+  position: relative;
+}
+.scroll-nav__item--active:before {
+  content: "";
+  display: block;
+  width: 14px;
+  height: 14px;
+  background: black;
+  position: absolute;
+  left: -20px;
+  top: 2px;
+}
+
+.scroll-nav__link {
+  color: #0645ad;
+  text-decoration: none;
+}
+
+.post__article {
+  padding: 20px;
+}
+@media screen and (min-width: 700px) {
+  .post__article {
+    margin-left: 210px;
+    padding: 30px;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .post__article {
+    margin-left: 310px;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */
