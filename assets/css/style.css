@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .highlight .c {
   color: #998;
   font-style: italic;
@@ -445,7 +446,8 @@ table td {
   min-height: 55.95px;
   line-height: 54px;
   position: fixed;
-  background-color: aquamarine;
+  background-color: white;
+  transition: background-color 0.3s ease;
   width: 100%;
   z-index: 999;
   overflow: auto;
@@ -617,7 +619,6 @@ table td {
  * Page content
  */
 .page-content {
-  padding: 30px 0;
   flex: 1 0 auto;
 }
 
@@ -750,6 +751,26 @@ table td {
 }
 main.page-content {
   margin-top: 55.95px;
+}
+
+.page-header {
+  background-image: url("/assets/images/bg.jpg"); /* 替换成实际的图片 URL */
+  background-size: cover;
+  background-position: center;
+  height: 50vh;
+}
+
+.site-header.scrolled {
+  border-top: 5px solid #424242;
+  border-bottom: 1px solid #e8e8e8;
+  min-height: 55.95px;
+  line-height: 54px;
+  position: fixed;
+  background-color: aquamarine;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  z-index: 999;
+  overflow: auto;
 }
 
 /*# sourceMappingURL=style.css.map */
