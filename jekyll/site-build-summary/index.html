@@ -86,7 +86,7 @@
 
   <HR>
   <p>目录</p>
-  <ul><li><a href="#latex-支持">$\LaTeX$ 支持</a></li><li><a href="#添加图片的方法">添加图片的方法</a></li><li><a href="#博客分页">博客分页</a></li><li><a href="#博客归档">博客归档</a></li><li><a href="#文章目录">文章目录</a></li></ul>
+  <ul><li><a href="#latex-支持">$\LaTeX$ 支持</a></li><li><a href="#添加图片的方法">添加图片的方法</a></li><li><a href="#博客分页">博客分页</a></li><li><a href="#博客归档">博客归档</a><ul><li><a href="#基本功能">基本功能</a></li><li><a href="#展开面板">展开面板</a></li></ul></li><li><a href="#文章目录">文章目录</a></li></ul>
   <HR>
 
   <div class="post-content e-content" itemprop="articleBody">
@@ -197,6 +197,7 @@ $$</div>
 <hr />
 
 <h1 id="博客归档">博客归档</h1>
+<h2 id="基本功能">基本功能</h2>
 <p>为博客添加归档可以清晰分辨出文章的类别。我参考了<a href="https://zoharandroid.github.io/2019-08-02-Jekyll%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BBCategory%E5%8A%9F%E8%83%BD/">这篇博客</a>中的教程。</p>
 
 <ul>
@@ -295,6 +296,9 @@ $$</div>
 
 <p><img src="/assets/images/categories_result.png" alt="文章显示归档" /></p>
 
+<h2 id="展开面板">展开面板</h2>
+<p>原本的归档形式最终会随着文章的增加变回一长条，所以我将归档页面<code class="language-plaintext highlighter-rouge">categories.html</code>和<a href="https://www.runoob.com/bootstrap/bootstrap-collapse-plugin.html#:~:text=1%20data-toggle%3D%22collapse%22%20%E6%B7%BB%E5%8A%A0%E5%88%B0%E6%82%A8%E6%83%B3%E8%A6%81%E5%B1%95%E5%BC%80%E6%88%96%E6%8A%98%E5%8F%A0%E7%9A%84%E7%BB%84%E4%BB%B6%E7%9A%84%E9%93%BE%E6%8E%A5%E4%B8%8A%E3%80%82%202%20href%20%E6%88%96%20data-target,%E5%B1%9E%E6%80%A7%E6%B7%BB%E5%8A%A0%E5%88%B0%E7%88%B6%E7%BB%84%E4%BB%B6%EF%BC%8C%E5%AE%83%E7%9A%84%E5%80%BC%E6%98%AF%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%20id%20%E3%80%82%203%20data-parent%20%E5%B1%9E%E6%80%A7%E6%8A%8A%E6%8A%98%E5%8F%A0%E9%9D%A2%E6%9D%BF%EF%BC%88accordion%EF%BC%89%E7%9A%84%20id%20%E6%B7%BB%E5%8A%A0%E5%88%B0%E8%A6%81%E5%B1%95%E5%BC%80%E6%88%96%E6%8A%98%E5%8F%A0%E7%9A%84%E7%BB%84%E4%BB%B6%E7%9A%84%E9%93%BE%E6%8E%A5%E4%B8%8A%E3%80%82">菜鸟教程</a>中的折叠插件结合了一下，做成了展开面板的形式。现在可以在<a href="/categories">归档</a>页面看到啦！</p>
+
 <hr />
 <h1 id="文章目录">文章目录</h1>
 <p>参考<a href="https://lisz.me/tech/webmaster/jekyll-toc.html">这篇博客</a>给文章加了目录。</p>
@@ -306,8 +310,6 @@ $$</div>
 </ul>
 
 <p>其实我想把目录做成放在页面侧边的 sticky 样式，但是我的前端水平和我本站贫瘠的内容不允许我多折腾，于是就此作罢，放在顶部也挺好的对吧 :)</p>
-
-<p>现在可以在每篇文章的顶部看到目录啦（只有设置一级标题的目录）。</p>
 
   </div><a class="u-url" href="/jekyll/site-build-summary/" hidden></a>
 </article>

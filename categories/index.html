@@ -84,6 +84,9 @@
 
 <!-- script pointing to jekyll-search.js -->
 <script src="/js/simple-jekyll-search.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script>
 SimpleJekyllSearch({
@@ -99,39 +102,79 @@ SimpleJekyllSearch({
 <br/>
 
 
-<div id="archives"><div class="archive-group"><div id="#Jekyll"></div>
-    <p></p>
+<div class="panel-group" id="archives"><div class="panel panel-default">
+      <div class="panel-heading"><div id="#Jekyll"></div>
+        <p></p>
 
-    <h3 class="category-head">Jekyll (5)</h3>
-    <a name="Jekyll"></a><article class="archive-item">
-      <h4><a href="/jekyll/site-build-summary/">博客搭建相关总集</a></h4>
-    </article><article class="archive-item">
-      <h4><a href="/jekyll/Image-Support/">博客的图片支持测试</a></h4>
-    </article><article class="archive-item">
-      <h4><a href="/jekyll/latex-support-for-my-blog/">Latex Support For My Blog</a></h4>
-    </article><article class="archive-item">
-      <h4><a href="/jekyll/first-blog/">My First Blog</a></h4>
-    </article><article class="archive-item">
-      <h4><a href="/jekyll/welcome-to-jekyll/">Welcome To Jekyll</a></h4>
-    </article></div><div class="archive-group"><div id="#MISC"></div>
-    <p></p>
+        <h2 class="panel-title">
+          <a data-toggle="collapse" data-parent="#archives" 
+          href="#Jekyll">Jekyll (5)</a>
+        </h2>
+        
+      </div>
 
-    <h3 class="category-head">MISC (1)</h3>
-    <a name="MISC"></a><article class="archive-item">
-      <h4><a href="/misc/filter/">SLAM技术学习：滤波</a></h4>
-    </article></div><div class="archive-group"><div id="#AirSim"></div>
-    <p></p>
+      <div id="Jekyll" class="panel-collapse collapse">
+        <div class="panel-body"><article class="archive-item">
+            <h4><a href="/jekyll/site-build-summary/">博客搭建相关总集</a></h4>
+          </article><article class="archive-item">
+            <h4><a href="/jekyll/Image-Support/">博客的图片支持测试</a></h4>
+          </article><article class="archive-item">
+            <h4><a href="/jekyll/latex-support-for-my-blog/">Latex Support For My Blog</a></h4>
+          </article><article class="archive-item">
+            <h4><a href="/jekyll/first-blog/">My First Blog</a></h4>
+          </article><article class="archive-item">
+            <h4><a href="/jekyll/welcome-to-jekyll/">Welcome To Jekyll</a></h4>
+          </article></div>
+      </div>
+    </div><div class="panel panel-default">
+      <div class="panel-heading"><div id="#MISC"></div>
+        <p></p>
 
-    <h3 class="category-head">AirSim (1)</h3>
-    <a name="AirSim"></a><article class="archive-item">
-      <h4><a href="/airsim/AirSim-with-PX4/">AirSim：PX4软件在环仿真</a></h4>
-    </article></div><div class="archive-group"><div id="#语言"></div>
-    <p></p>
+        <h2 class="panel-title">
+          <a data-toggle="collapse" data-parent="#archives" 
+          href="#MISC">MISC (1)</a>
+        </h2>
+        
+      </div>
 
-    <h3 class="category-head">语言 (1)</h3>
-    <a name="语言"></a><article class="archive-item">
-      <h4><a href="/%E8%AF%AD%E8%A8%80/Japanese-Language/">日语学习记录：基础日语（上）的语法</a></h4>
-    </article></div></div>
+      <div id="MISC" class="panel-collapse collapse">
+        <div class="panel-body"><article class="archive-item">
+            <h4><a href="/misc/filter/">SLAM技术学习：滤波</a></h4>
+          </article></div>
+      </div>
+    </div><div class="panel panel-default">
+      <div class="panel-heading"><div id="#AirSim"></div>
+        <p></p>
+
+        <h2 class="panel-title">
+          <a data-toggle="collapse" data-parent="#archives" 
+          href="#AirSim">AirSim (1)</a>
+        </h2>
+        
+      </div>
+
+      <div id="AirSim" class="panel-collapse collapse">
+        <div class="panel-body"><article class="archive-item">
+            <h4><a href="/airsim/AirSim-with-PX4/">AirSim：PX4软件在环仿真</a></h4>
+          </article></div>
+      </div>
+    </div><div class="panel panel-default">
+      <div class="panel-heading"><div id="#语言"></div>
+        <p></p>
+
+        <h2 class="panel-title">
+          <a data-toggle="collapse" data-parent="#archives" 
+          href="#语言">语言 (1)</a>
+        </h2>
+        
+      </div>
+
+      <div id="语言" class="panel-collapse collapse">
+        <div class="panel-body"><article class="archive-item">
+            <h4><a href="/%E8%AF%AD%E8%A8%80/Japanese-Language/">日语学习记录：基础日语（上）的语法</a></h4>
+          </article></div>
+      </div>
+    </div></div>
   </div>
 
 </article>

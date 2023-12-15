@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-14T21:23:02+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Leighton’s Blog</title><subtitle>Learning &amp; Sharing
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-15T20:12:30+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Leighton’s Blog</title><subtitle>Learning &amp; Sharing
 </subtitle><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><entry><title type="html">日语学习记录：基础日语（上）的语法</title><link href="http://localhost:4000/%E8%AF%AD%E8%A8%80/Japanese-Language/" rel="alternate" type="text/html" title="日语学习记录：基础日语（上）的语法" /><published>2023-12-14T00:00:00+08:00</published><updated>2023-12-14T00:00:00+08:00</updated><id>http://localhost:4000/%E8%AF%AD%E8%A8%80/Japanese-Language</id><content type="html" xml:base="http://localhost:4000/%E8%AF%AD%E8%A8%80/Japanese-Language/"><![CDATA[<p>本学期作为旁听生学习了本校的课程 FL1008-基础日语，本文用以记录本学期学到的语法和表达，以供日后温习。</p>
 
 <p>课程所用教材为人民教育出版社出版的《标准日本语》。</p>
@@ -289,6 +289,7 @@ $$</div>
 <hr />
 
 <h1 id="博客归档">博客归档</h1>
+<h2 id="基本功能">基本功能</h2>
 <p>为博客添加归档可以清晰分辨出文章的类别。我参考了<a href="https://zoharandroid.github.io/2019-08-02-Jekyll%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BBCategory%E5%8A%9F%E8%83%BD/">这篇博客</a>中的教程。</p>
 
 <ul>
@@ -387,6 +388,9 @@ $$</div>
 
 <p><img src="/assets/images/categories_result.png" alt="文章显示归档" /></p>
 
+<h2 id="展开面板">展开面板</h2>
+<p>原本的归档形式最终会随着文章的增加变回一长条，所以我将归档页面<code class="language-plaintext highlighter-rouge">categories.html</code>和<a href="https://www.runoob.com/bootstrap/bootstrap-collapse-plugin.html#:~:text=1%20data-toggle%3D%22collapse%22%20%E6%B7%BB%E5%8A%A0%E5%88%B0%E6%82%A8%E6%83%B3%E8%A6%81%E5%B1%95%E5%BC%80%E6%88%96%E6%8A%98%E5%8F%A0%E7%9A%84%E7%BB%84%E4%BB%B6%E7%9A%84%E9%93%BE%E6%8E%A5%E4%B8%8A%E3%80%82%202%20href%20%E6%88%96%20data-target,%E5%B1%9E%E6%80%A7%E6%B7%BB%E5%8A%A0%E5%88%B0%E7%88%B6%E7%BB%84%E4%BB%B6%EF%BC%8C%E5%AE%83%E7%9A%84%E5%80%BC%E6%98%AF%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%20id%20%E3%80%82%203%20data-parent%20%E5%B1%9E%E6%80%A7%E6%8A%8A%E6%8A%98%E5%8F%A0%E9%9D%A2%E6%9D%BF%EF%BC%88accordion%EF%BC%89%E7%9A%84%20id%20%E6%B7%BB%E5%8A%A0%E5%88%B0%E8%A6%81%E5%B1%95%E5%BC%80%E6%88%96%E6%8A%98%E5%8F%A0%E7%9A%84%E7%BB%84%E4%BB%B6%E7%9A%84%E9%93%BE%E6%8E%A5%E4%B8%8A%E3%80%82">菜鸟教程</a>中的折叠插件结合了一下，做成了展开面板的形式。现在可以在<a href="/categories">归档</a>页面看到啦！</p>
+
 <hr />
 <h1 id="文章目录">文章目录</h1>
 <p>参考<a href="https://lisz.me/tech/webmaster/jekyll-toc.html">这篇博客</a>给文章加了目录。</p>
@@ -397,9 +401,7 @@ $$</div>
   <li>在 <code class="language-plaintext highlighter-rouge">_layouts</code> 中需要目录的地方加上一行代码 <code class="language-plaintext highlighter-rouge">\{\% include toc.html html=content \%\}</code>（记得删掉转义字符即可）</li>
 </ul>
 
-<p>其实我想把目录做成放在页面侧边的 sticky 样式，但是我的前端水平和我本站贫瘠的内容不允许我多折腾，于是就此作罢，放在顶部也挺好的对吧 :)</p>
-
-<p>现在可以在每篇文章的顶部看到目录啦（只有设置一级标题的目录）。</p>]]></content><author><name>Leighton</name></author><category term="Jekyll" /><summary type="html"><![CDATA[之前添加各种功能的时候零散地写了几篇东西，似乎很没有条理的样子。以后博客建设的相关内容都会集中在这里，也许会持续更新( ᐛ )]]></summary></entry><entry><title type="html">博客的图片支持测试</title><link href="http://localhost:4000/jekyll/Image-Support/" rel="alternate" type="text/html" title="博客的图片支持测试" /><published>2023-12-12T00:00:00+08:00</published><updated>2023-12-12T00:00:00+08:00</updated><id>http://localhost:4000/jekyll/Image-Support</id><content type="html" xml:base="http://localhost:4000/jekyll/Image-Support/"><![CDATA[<p>根据 Jekyll 的官方文档尝试进行图片支持。一张都市天际线城市的轨交地图：
+<p>其实我想把目录做成放在页面侧边的 sticky 样式，但是我的前端水平和我本站贫瘠的内容不允许我多折腾，于是就此作罢，放在顶部也挺好的对吧 :)</p>]]></content><author><name>Leighton</name></author><category term="Jekyll" /><summary type="html"><![CDATA[之前添加各种功能的时候零散地写了几篇东西，似乎很没有条理的样子。以后博客建设的相关内容都会集中在这里，也许会持续更新( ᐛ )]]></summary></entry><entry><title type="html">博客的图片支持测试</title><link href="http://localhost:4000/jekyll/Image-Support/" rel="alternate" type="text/html" title="博客的图片支持测试" /><published>2023-12-12T00:00:00+08:00</published><updated>2023-12-12T00:00:00+08:00</updated><id>http://localhost:4000/jekyll/Image-Support</id><content type="html" xml:base="http://localhost:4000/jekyll/Image-Support/"><![CDATA[<p>根据 Jekyll 的官方文档尝试进行图片支持。一张都市天际线城市的轨交地图：
 <img src="/assets/images/RailwayMap.png" alt="有帮助的截图" /></p>]]></content><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><category term="Jekyll" /><summary type="html"><![CDATA[根据 Jekyll 的官方文档尝试进行图片支持。一张都市天际线城市的轨交地图：]]></summary></entry><entry><title type="html">AirSim：PX4软件在环仿真</title><link href="http://localhost:4000/airsim/AirSim-with-PX4/" rel="alternate" type="text/html" title="AirSim：PX4软件在环仿真" /><published>2023-12-11T00:00:00+08:00</published><updated>2023-12-11T00:00:00+08:00</updated><id>http://localhost:4000/airsim/AirSim-with-PX4</id><content type="html" xml:base="http://localhost:4000/airsim/AirSim-with-PX4/"><![CDATA[<p>今天被在 WSL2 上配置 PX4 困扰了许久，记录以下近几天解决该问题的过程。</p>
 
 <h1 id="目的">目的</h1>
