@@ -1,5 +1,114 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-26T20:29:35+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Leighton’s Blog</title><subtitle>Learning &amp; Sharing
-</subtitle><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><entry><title type="html">雪国与大海：沈阳、大连游记</title><link href="http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-liaoning/" rel="alternate" type="text/html" title="雪国与大海：沈阳、大连游记" /><published>2023-12-26T00:00:00+08:00</published><updated>2023-12-26T00:00:00+08:00</updated><id>http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-liaoning</id><content type="html" xml:base="http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-liaoning/"><![CDATA[<p>作为一个南方孩子，一睹万里雪飘的北国风采一直是心里的一个愿望。正值防控放开后的第一个冬至遇上大四较为闲暇的时光，决定背起行囊前往东北，与在沈阳上学的好兄弟 LJ 来一趟旅行。许久未写作，这想必是一篇疏于文笔的流水账式的博客，且记录一下一路的见闻与感受。</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-01-02T23:17:35+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Leighton’s Blog</title><subtitle>Learning &amp; Sharing
+</subtitle><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><entry><title type="html">基于KCF的地面目标追踪</title><link href="http://localhost:4000/airsim/KCF-based-track/" rel="alternate" type="text/html" title="基于KCF的地面目标追踪" /><published>2024-01-02T00:00:00+08:00</published><updated>2024-01-02T00:00:00+08:00</updated><id>http://localhost:4000/airsim/KCF-based-track</id><content type="html" xml:base="http://localhost:4000/airsim/KCF-based-track/"><![CDATA[<p>这周在 AirSim 里做了一个基于 KCF 算法的地面（下方）物体追踪仿真，写一篇博客记录一下，以防后面忘记现在在干什么（</p>
+
+<hr />
+
+<h1 id="任务介绍">任务介绍</h1>
+<p>我希望使用无人机的底部摄像头拍摄下方物体，使用 KCF 算法检测该物体的位置，使用 PID 作为控制器，通过控制无人机的水平方向速度保持目标物体处于下方摄像头拍摄图像的中央。任务流程及控制器结构如下所示。</p>
+
+<p><img src="/assets/images/KCFtracking/mission.png" alt="mission" /></p>
+
+<hr />
+
+<h1 id="kcf-算法">KCF 算法</h1>
+<p><del>肯德基</del>核滤波相关算法（Kernel Correlation Filter，KCF）基于核化的<strong>岭回归分类器</strong>使用循环移位得到的<strong>循环矩阵</strong>来采集正负样本，利用循环矩阵在<strong>傅里叶空间</strong>可对角化的性质，将矩阵的运算转化为元素的点乘，从而降低了运算量，使得算法满足实时性要求。同时，KCF使用<strong>多通道HOG特征</strong>代替单通道灰度特征，将特征扩展到多通道的非线性特征空间，达到了更高的鲁棒性和准确性。</p>
+
+<h2 id="kcf-核心公式">KCF 核心公式</h2>
+<ul>
+  <li>
+    <p>核相关矩阵的初始向量</p>
+
+    <div class="kdmath">$$
+\mathbf k^{\mathbf{xx'}}=\exp\left(-\frac{1}{\sigma^2}\left(\Vert \mathbf x\Vert^2 + \Vert \mathbf x'\Vert^2-2\mathcal F^{-1}(\sum_c\hat{\mathbf x}_c^* \odot \hat{\mathbf x_c})\right) \right)
+$$</div>
+
+    <p>其中 $\mathcal F$ 表示傅里叶变换，$\mathbf x’=\mathcal F(\mathbf x)$，$\odot$ 表示卷积</p>
+  </li>
+  <li>
+    <p>核化后的岭回归分类器权值</p>
+
+    <div class="kdmath">$$
+\hat{\alpha}=\frac{\hat{\mathbf y}}{\hat{\mathbf k}^{\mathbf{xx}}+\lambda}
+$$</div>
+  </li>
+  <li>
+    <p>快速检测</p>
+
+    <div class="kdmath">$$
+\hat{\mathbf f}(\mathbf z)= \hat{\mathbf k}^{\mathbf{xz}} \odot \hat\alpha
+$$</div>
+  </li>
+</ul>
+
+<p>详细原理可参考<a href="https://blog.nowcoder.net/n/57e237d75867440f8dc329a87db4aae7?from=nowcoder_improve#KCF_102">这篇博客</a>或<a href="https://ieeexplore.ieee.org/abstract/document/6870486">论文原文</a>。</p>
+
+<h2 id="代码实现">代码实现</h2>
+<p>OpenCV 已经完成了 KCF 算法的实现，可以直接调用。我实现时参考了<a href="https://blog.csdn.net/sements/article/details/100586299">这篇博客</a>中的代码，添加了选择框。</p>
+
+<hr />
+
+<h1 id="pid-控制器">PID 控制器</h1>
+<p>将 PID 控制器进行了简单的封装。</p>
+
+<pre><code class="language-Python">'''
+PID.py
+'''
+
+class PIDController:
+    def __init__(self, kp = 1.0, ki=0.0, kd=0.0, setpoint=0):
+        self.kp = kp
+        self.ki = ki
+        self.kd = kd
+        self.setpoint = setpoint
+
+        self.prev_error = 0
+        self.integral = 0
+
+    def update(self, current_value):
+        error = self.setpoint - current_value
+        self.integral += error
+        derivative = error - self.prev_error
+
+        output = self.kp * error + self.ki * self.integral + self.kd * derivative
+
+        self.prev_error = error
+        return output
+</code></pre>
+
+<hr />
+
+<h1 id="airsim-设置">AirSim 设置</h1>
+<p>更改 <code class="language-plaintext highlighter-rouge">User/Documents/AirSim/settings</code>，添加两架无人机。追踪机为 Drone1，被追踪机为 Drone2：</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"SettingsVersion"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"SimMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Multirotor"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ClockSpeed"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+
+    </span><span class="nl">"Vehicles"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+		</span><span class="nl">"Drone1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+		  </span><span class="nl">"VehicleType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SimpleFlight"</span><span class="p">,</span><span class="w">
+		  </span><span class="nl">"X"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nl">"Y"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nl">"Z"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"Yaw"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+		</span><span class="p">},</span><span class="w">
+		</span><span class="nl">"Drone2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+		  </span><span class="nl">"VehicleType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SimpleFlight"</span><span class="p">,</span><span class="w">
+		  </span><span class="nl">"X"</span><span class="p">:</span><span class="w"> </span><span class="mi">-2</span><span class="p">,</span><span class="w"> </span><span class="nl">"Y"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nl">"Z"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"Yaw"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+		</span><span class="p">}</span><span class="w">
+
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>在 Python 主程序中，先控制两架无人机上升，使 Drone1 在 Drone2 上方的一定位置，随后会弹出openCV窗口（Drone1 底部摄像头），框选目标无人机，然后 Drone2 开始水平移动，Drone1 进行追踪。<a href="/assets/files/image_test.py">参考代码</a></p>
+
+<hr />
+
+<h1 id="追踪效果">追踪效果</h1>
+<p>目前使用简单的水平匀速移动与简单的 P 控制器验证了该方案的可行性。$x$ 方向上的速度如图所示，可见 Drone1 的跟踪确实可以收敛。</p>
+
+<p><img src="/assets/images/trace_v.png" alt="trace" /></p>]]></content><author><name>Leighton</name></author><category term="AirSim" /><summary type="html"><![CDATA[这周在 AirSim 里做了一个基于 KCF 算法的地面（下方）物体追踪仿真，写一篇博客记录一下，以防后面忘记现在在干什么（]]></summary></entry><entry><title type="html">雪国与大海：沈阳、大连游记</title><link href="http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-liaoning/" rel="alternate" type="text/html" title="雪国与大海：沈阳、大连游记" /><published>2023-12-26T00:00:00+08:00</published><updated>2023-12-26T00:00:00+08:00</updated><id>http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-liaoning</id><content type="html" xml:base="http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-liaoning/"><![CDATA[<p>作为一个南方孩子，一睹万里雪飘的北国风采一直是心里的一个愿望。正值防控放开后的第一个冬至遇上大四较为闲暇的时光，决定背起行囊前往东北，与在沈阳上学的好兄弟 LJ 来一趟旅行。许久未写作，这想必是一篇疏于文笔的流水账式的博客，且记录一下一路的见闻与感受。</p>
 
 <hr />
 
@@ -275,7 +384,84 @@
 </ul>
 
 <hr />
-<h1 id="第三单元形容词">第三单元：形容词</h1>]]></content><author><name>Leighton</name></author><category term="语言" /><summary type="html"><![CDATA[本学期作为旁听生学习了本校的课程 FL1008-基础日语，本文用以记录本学期学到的语法和表达，以供日后温习。]]></summary></entry><entry><title type="html">博客搭建相关总集</title><link href="http://localhost:4000/jekyll/site-build-summary/" rel="alternate" type="text/html" title="博客搭建相关总集" /><published>2023-12-13T00:00:00+08:00</published><updated>2023-12-13T00:00:00+08:00</updated><id>http://localhost:4000/jekyll/site-build-summary</id><content type="html" xml:base="http://localhost:4000/jekyll/site-build-summary/"><![CDATA[<p>之前添加各种功能的时候零散地写了几篇东西，似乎很没有条理的样子。以后博客建设的相关内容都会集中在这里，也许会持续更新( ᐛ )</p>
+<h1 id="第三单元形容词">第三单元：形容词</h1>
+
+<h2 id="形容词类型">形容词类型</h2>
+<p>日语的形容词有2个类型：</p>
+<ul>
+  <li>一类形容词：以 い 结尾的形容词</li>
+  <li>二类形容词：一类形容词以外的形容词</li>
+</ul>
+
+<h2 id="一类形容词">一类形容词</h2>
+<ol>
+  <li>作谓语：直接在其后加「です」即可。
+ 例：
+    <ul>
+      <li>四川料理は辛いです。</li>
+      <li>このお茶は熱いです。</li>
+    </ul>
+  </li>
+  <li>作谓语时的各种变形
+    <table>
+     <tr>
+         <td></td>
+         <td>肯定</td>
+         <td>否定</td>
+     </tr>
+     <tr>
+         <td>现在</td>
+         <td>~い</td>
+         <td>~くない</td>
+     </tr>
+     <tr>
+         <td>过去</td>
+         <td>~かった</td>
+         <td>~くなかった / ~くありませんでした</td>
+     </tr>
+ </table>
+
+    <p>例：</p>
+    <ul>
+      <li>旅行は楽しかったです。</li>
+      <li>昨日は寒くなかったです。</li>
+      <li>昨日は寒くありませんでした。</li>
+    </ul>
+  </li>
+  <li>修饰名词：直接放在名词之前即可
+ 例：
+    <ul>
+      <li>広い国    （广阔的国家）</li>
+      <li>青い海    （蓝色的大海）</li>
+    </ul>
+  </li>
+  <li>あまり：与后面的形容词或动词的否定形式呼应，表程度不高。
+    <ul>
+      <li>このスープは<strong>あまり</strong>熱く<strong>ない</strong>です。  （这个汤不太热。）</li>
+      <li>試験はあまり難しくない。  （考试不太难。）</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="二类形容词">二类形容词</h2>
+<ol>
+  <li>作谓语：与一类相同，直接加「です」
+    <ul>
+      <li>京都の紅葉は有名です。</li>
+      <li>この町は賑やかでした。　（这个城市从前很热闹）</li>
+    </ul>
+  </li>
+  <li>作谓语的否定：[二类形] では　ありません
+    <ul>
+      <li>昨日は暇じゃありませんでした。</li>
+    </ul>
+  </li>
+  <li>修饰名词：[二类形]な　[名词]
+    <ul>
+      <li>上海は賑やかな町です。    （上海是热闹的城市。）</li>
+    </ul>
+  </li>
+</ol>]]></content><author><name>Leighton</name></author><category term="语言" /><summary type="html"><![CDATA[本学期作为旁听生学习了本校的课程 FL1008-基础日语，本文用以记录本学期学到的语法和表达，以供日后温习。]]></summary></entry><entry><title type="html">博客搭建相关总集</title><link href="http://localhost:4000/jekyll/site-build-summary/" rel="alternate" type="text/html" title="博客搭建相关总集" /><published>2023-12-13T00:00:00+08:00</published><updated>2023-12-13T00:00:00+08:00</updated><id>http://localhost:4000/jekyll/site-build-summary</id><content type="html" xml:base="http://localhost:4000/jekyll/site-build-summary/"><![CDATA[<p>之前添加各种功能的时候零散地写了几篇东西，似乎很没有条理的样子。以后博客建设的相关内容都会集中在这里，也许会持续更新( ᐛ )</p>
 
 <h1 id="latex-支持">$\LaTeX$ 支持</h1>
 <p>首先要解决的就是 Jekyll 博客原生不支持 LaTeX 的问题，过程如下：</p>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>基于KCF的地面目标追踪 | Leighton’s Blog</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="基于KCF的地面目标追踪" />
+<meta name="author" content="Leighton" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="这周在 AirSim 里做了一个基于 KCF 算法的地面（下方）物体追踪仿真，写一篇博客记录一下，以防后面忘记现在在干什么（" />
+<meta property="og:description" content="这周在 AirSim 里做了一个基于 KCF 算法的地面（下方）物体追踪仿真，写一篇博客记录一下，以防后面忘记现在在干什么（" />
+<link rel="canonical" href="http://localhost:4000/airsim/KCF-based-track/" />
+<meta property="og:url" content="http://localhost:4000/airsim/KCF-based-track/" />
+<meta property="og:site_name" content="Leighton’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-01-02T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="基于KCF的地面目标追踪" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Leighton"},"dateModified":"2024-01-02T00:00:00+08:00","datePublished":"2024-01-02T00:00:00+08:00","description":"这周在 AirSim 里做了一个基于 KCF 算法的地面（下方）物体追踪仿真，写一篇博客记录一下，以防后面忘记现在在干什么（","headline":"基于KCF的地面目标追踪","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/airsim/KCF-based-track/"},"url":"http://localhost:4000/airsim/KCF-based-track/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Leighton&apos;s Blog" />
+<link rel="icon" type="image/png" sizes="16x16"  href="/favicons/favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff"></head>
+<body><header class="site-header">
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      inlineMath: [['$','$']]
+    }
+  });
+</script>
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Leighton&#39;s Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">关于本站</a><a class="page-link" href="/categories/">归档</a></div>
+      </nav></div>
+</header>
+<script>
+      document.addEventListener("scroll", function () {
+        var scrollPosition = window.scrollY;
+  
+        // 设置一个阈值，当滚动超过这个值时，添加滚动后的样式
+        var threshold = 100;
+  
+        var header = document.querySelector(".site-header");
+  
+        if (scrollPosition > threshold) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+    </script>
+
+    <div class="page-header"></div>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">基于KCF的地面目标追踪</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2024-01-02T00:00:00+08:00" itemprop="datePublished">
+        Jan 2, 2024
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Leighton</span></span></p>
+
+      
+		  <div class="blog-tags">
+		  归档：<a href="/categories/#AirSim">AirSim</a></div></header>
+
+  <HR>
+  <p>目录</p>
+  <ul><li><a href="#任务介绍">任务介绍</a></li><li><a href="#kcf-算法">KCF 算法</a><ul><li><a href="#kcf-核心公式">KCF 核心公式</a></li><li><a href="#代码实现">代码实现</a></li></ul></li><li><a href="#pid-控制器">PID 控制器</a></li><li><a href="#airsim-设置">AirSim 设置</a></li><li><a href="#追踪效果">追踪效果</a></li></ul>
+  <HR>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>这周在 AirSim 里做了一个基于 KCF 算法的地面（下方）物体追踪仿真，写一篇博客记录一下，以防后面忘记现在在干什么（</p>
+
+<hr />
+
+<h1 id="任务介绍">任务介绍</h1>
+<p>我希望使用无人机的底部摄像头拍摄下方物体，使用 KCF 算法检测该物体的位置，使用 PID 作为控制器，通过控制无人机的水平方向速度保持目标物体处于下方摄像头拍摄图像的中央。任务流程及控制器结构如下所示。</p>
+
+<p><img src="/assets/images/KCFtracking/mission.png" alt="mission" /></p>
+
+<hr />
+
+<h1 id="kcf-算法">KCF 算法</h1>
+<p><del>肯德基</del>核滤波相关算法（Kernel Correlation Filter，KCF）基于核化的<strong>岭回归分类器</strong>使用循环移位得到的<strong>循环矩阵</strong>来采集正负样本，利用循环矩阵在<strong>傅里叶空间</strong>可对角化的性质，将矩阵的运算转化为元素的点乘，从而降低了运算量，使得算法满足实时性要求。同时，KCF使用<strong>多通道HOG特征</strong>代替单通道灰度特征，将特征扩展到多通道的非线性特征空间，达到了更高的鲁棒性和准确性。</p>
+
+<h2 id="kcf-核心公式">KCF 核心公式</h2>
+<ul>
+  <li>
+    <p>核相关矩阵的初始向量</p>
+
+    <div class="kdmath">$$
+\mathbf k^{\mathbf{xx'}}=\exp\left(-\frac{1}{\sigma^2}\left(\Vert \mathbf x\Vert^2 + \Vert \mathbf x'\Vert^2-2\mathcal F^{-1}(\sum_c\hat{\mathbf x}_c^* \odot \hat{\mathbf x_c})\right) \right)
+$$</div>
+
+    <p>其中 $\mathcal F$ 表示傅里叶变换，$\mathbf x’=\mathcal F(\mathbf x)$，$\odot$ 表示卷积</p>
+  </li>
+  <li>
+    <p>核化后的岭回归分类器权值</p>
+
+    <div class="kdmath">$$
+\hat{\alpha}=\frac{\hat{\mathbf y}}{\hat{\mathbf k}^{\mathbf{xx}}+\lambda}
+$$</div>
+  </li>
+  <li>
+    <p>快速检测</p>
+
+    <div class="kdmath">$$
+\hat{\mathbf f}(\mathbf z)= \hat{\mathbf k}^{\mathbf{xz}} \odot \hat\alpha
+$$</div>
+  </li>
+</ul>
+
+<p>详细原理可参考<a href="https://blog.nowcoder.net/n/57e237d75867440f8dc329a87db4aae7?from=nowcoder_improve#KCF_102">这篇博客</a>或<a href="https://ieeexplore.ieee.org/abstract/document/6870486">论文原文</a>。</p>
+
+<h2 id="代码实现">代码实现</h2>
+<p>OpenCV 已经完成了 KCF 算法的实现，可以直接调用。我实现时参考了<a href="https://blog.csdn.net/sements/article/details/100586299">这篇博客</a>中的代码，添加了选择框。</p>
+
+<hr />
+
+<h1 id="pid-控制器">PID 控制器</h1>
+<p>将 PID 控制器进行了简单的封装。</p>
+
+<pre><code class="language-Python">'''
+PID.py
+'''
+
+class PIDController:
+    def __init__(self, kp = 1.0, ki=0.0, kd=0.0, setpoint=0):
+        self.kp = kp
+        self.ki = ki
+        self.kd = kd
+        self.setpoint = setpoint
+
+        self.prev_error = 0
+        self.integral = 0
+
+    def update(self, current_value):
+        error = self.setpoint - current_value
+        self.integral += error
+        derivative = error - self.prev_error
+
+        output = self.kp * error + self.ki * self.integral + self.kd * derivative
+
+        self.prev_error = error
+        return output
+</code></pre>
+
+<hr />
+
+<h1 id="airsim-设置">AirSim 设置</h1>
+<p>更改 <code class="language-plaintext highlighter-rouge">User/Documents/AirSim/settings</code>，添加两架无人机。追踪机为 Drone1，被追踪机为 Drone2：</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"SettingsVersion"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"SimMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Multirotor"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ClockSpeed"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+
+    </span><span class="nl">"Vehicles"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+		</span><span class="nl">"Drone1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+		  </span><span class="nl">"VehicleType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SimpleFlight"</span><span class="p">,</span><span class="w">
+		  </span><span class="nl">"X"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nl">"Y"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nl">"Z"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"Yaw"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+		</span><span class="p">},</span><span class="w">
+		</span><span class="nl">"Drone2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+		  </span><span class="nl">"VehicleType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SimpleFlight"</span><span class="p">,</span><span class="w">
+		  </span><span class="nl">"X"</span><span class="p">:</span><span class="w"> </span><span class="mi">-2</span><span class="p">,</span><span class="w"> </span><span class="nl">"Y"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nl">"Z"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"Yaw"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+		</span><span class="p">}</span><span class="w">
+
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>在 Python 主程序中，先控制两架无人机上升，使 Drone1 在 Drone2 上方的一定位置，随后会弹出openCV窗口（Drone1 底部摄像头），框选目标无人机，然后 Drone2 开始水平移动，Drone1 进行追踪。<a href="/assets/files/image_test.py">参考代码</a></p>
+
+<hr />
+
+<h1 id="追踪效果">追踪效果</h1>
+<p>目前使用简单的水平匀速移动与简单的 P 控制器验证了该方案的可行性。$x$ 方向上的速度如图所示，可见 Drone1 的跟踪确实可以收敛。</p>
+
+<p><img src="/assets/images/trace_v.png" alt="trace" /></p>
+
+  </div><a class="u-url" href="/airsim/KCF-based-track/" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <!-- <p class="feed-subscribe">
+          <a href="http://localhost:4000/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p> -->
+        <ul class="contact-list">
+          <li class="p-name">Leighton Wang</li>
+          <li><a class="u-email" href="mailto:wtrwang7@sjtu.edu.cn">wtrwang7@sjtu.edu.cn</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Learning &amp; Sharing
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li>
+  <a rel="me" href="https://github.com/LeightonWang" target="_blank" title="github">
+    <svg class="svg-icon grey">
+      <use xlink:href="/assets/minima-social-icons.svg#github"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://space.bilibili.com/8367854" target="_blank" title="youtube">
+    <svg class="svg-icon grey">
+      <use xlink:href="/assets/minima-social-icons.svg#youtube"></use>
+    </svg>
+  </a>
+</li>
+</ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
