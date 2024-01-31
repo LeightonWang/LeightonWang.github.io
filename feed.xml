@@ -1,5 +1,183 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-01-31T12:45:57+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Leighton’s Blog</title><subtitle>Learning &amp; Sharing
-</subtitle><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><entry><title type="html">基于KCF的地面目标追踪</title><link href="http://localhost:4000/airsim/KCF-based-track/" rel="alternate" type="text/html" title="基于KCF的地面目标追踪" /><published>2024-01-02T00:00:00+08:00</published><updated>2024-01-02T00:00:00+08:00</updated><id>http://localhost:4000/airsim/KCF-based-track</id><content type="html" xml:base="http://localhost:4000/airsim/KCF-based-track/"><![CDATA[<p>这周在 AirSim 里做了一个基于 KCF 算法的地面（下方）物体追踪仿真，写一篇博客记录一下，以防后面忘记现在在干什么（</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-01-31T23:08:14+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Leighton’s Blog</title><subtitle>Learning &amp; Sharing
+</subtitle><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><entry><title type="html">日本之行 关西篇</title><link href="http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-japan-kansai/" rel="alternate" type="text/html" title="日本之行 关西篇" /><published>2024-01-31T00:00:00+08:00</published><updated>2024-01-31T00:00:00+08:00</updated><id>http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-japan-kansai</id><content type="html" xml:base="http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-japan-kansai/"><![CDATA[<p>去年 9 月末与在沪的高中同学们聚餐时，与两位同学提出了寒假去日本旅行的想法。经过一番安排，最终包括我在内的 5 人于 1 月 14 日从大阪关西机场顺利入境，开启了我们七天八夜的日本之旅。</p>
+
+<p>由于我们其中的 4 人都是初到日本，希望能尽可能多地领略这个国家的风光，行程安排得显得有些许仓促。在此对这趟梦幻的旅行作一个简单的记录，以供日后回味。</p>
+
+<hr />
+
+<h1 id="1-月-14-日入境日本大阪初印象">1 月 14 日：入境日本，大阪初印象</h1>
+<p>早上在浦东机场与大家会合后，于中午 1 点左右搭乘 9C8999 次航班前往大阪关西机场。在机上填写外国人入境卡（每人一张）与行李申报卡（共用一张）后顺利通关（真的好丝滑），搭乘南海电铁前往民宿附近。</p>
+
+<p><img src="/assets/images/JapanTrip/KIX2bnb.jpg" alt="img1" /></p>
+
+<p>安顿后乘坐大阪地铁四つ橋線前往難波，在心斋桥吃了晚饭，随后回民宿休息。</p>
+
+<p><img src="/assets/images/JapanTrip/dotonbori.jpg" alt="ddb" />
+<img src="/assets/images/JapanTrip/bridge.jpg" alt="ddb2" /></p>
+
+<hr />
+
+<h1 id="1-月-15-日大阪--奈良">1 月 15 日：大阪 &amp; 奈良</h1>
+
+<p>15 号起了个大早，和 Sam 一起到民宿不远处的罗森给大伙带了早饭（赞美民宿的微波炉），吃完早饭后前往大阪城公园。</p>
+
+<h2 id="大阪城">大阪城</h2>
+<p><img src="/assets/images/JapanTrip/osakaPolice.jpg" alt="police" /></p>
+<center> 大阪警察总署（我服部平藏呢？）</center>
+<p><br /></p>
+
+<p><img src="/assets/images/JapanTrip/tenshu.jpg" alt="tenshu" />
+<img src="/assets/images/JapanTrip/tenshu_close.jpg" alt="tenshu" /></p>
+<center> 大阪城公园与天守阁 </center>
+<p><br /></p>
+
+<p>中午 11 点左右，从大阪城公园东南角离开，在森ノ宮駅附近吃了拌荞麦面。
+<img src="/assets/images/JapanTrip/soba.jpg" alt="soba" /></p>
+
+<p>随后乘坐 JR 大阪环状线前往鶴橋駅，换乘近鉄奈良線前往奈良。（在森ノ宮上车使以为大阪环状线是地铁，还问了工作人员为什么我们的通票不能用，有些尴尬）
+<img src="/assets/images/JapanTrip/OsakaSkyline.jpg" alt="osakaskyline" /></p>
+<center>近铁电车上拍摄的大阪天际线</center>
+<p><br /></p>
+
+<h2 id="奈良半日">奈良半日</h2>
+
+<p>在奈良公园喂了鹿www
+<img src="/assets/images/JapanTrip/czxAndDeers.jpg" alt="czxdeers" />
+<img src="/assets/images/JapanTrip/Deers.jpg" alt="deers" /></p>
+
+<p>前往东大寺的路上吃了点甜品
+<img src="/assets/images/JapanTrip/naraDessert.jpg" alt="naradessert" /></p>
+
+<p>东大寺，超巨大的木构建筑！
+<img src="/assets/images/JapanTrip/toudaiji1.jpg" alt="toudaiji1" />
+<img src="/assets/images/JapanTrip/toudaiji2.jpg" alt="toudaiji2" />
+<img src="/assets/images/JapanTrip/toudaiji3.jpg" alt="toudaiji3" /></p>
+
+<p>内部有一些巨大的佛像之类的，没问过佛祖的意见而且拍的也不怎么好看，就不放上来了。</p>
+
+<p>游览东大寺后，向东游览了手向山（たむけやま，原友们称之为影向山）
+<img src="/assets/images/JapanTrip/tamuke.jpg" alt="tamuke" /></p>
+
+<p><img src="/assets/images/JapanTrip/mitarai.jpg" alt="mitarai" /></p>
+<center>山上神社的御手洗（みたらい）</center>
+<p><br /></p>
+
+<p><img src="/assets/images/JapanTrip/nara_high.jpg" alt="narafromhigh" /></p>
+<center>远眺奈良城</center>
+<p><br /></p>
+
+<p><img src="/assets/images/JapanTrip/NaraStreet.jpg" alt="narastreet" /></p>
+<center>奈良街道</center>
+<p><br /></p>
+
+<h2 id="梅田夜游">梅田夜游</h2>
+
+<p>随后乘电车回到了大阪，去梅田转了一圈，在梅田蓝天大厦上看到了大阪的夜景！
+<img src="/assets/images/JapanTrip/Umeda1.jpg" alt="umeda1" /></p>
+
+<p><img src="/assets/images/JapanTrip/Umeda2.jpg" alt="umeda2" /></p>
+
+<p><img src="/assets/images/JapanTrip/Umeda3.jpg" alt="umeda3" /></p>
+
+<hr />
+
+<h1 id="1-月-16-日环球影城">1 月 16 日：环球影城</h1>
+
+<p>头天晚上提前买好了早餐（赞美民宿的冰箱），吃完后搭乘四つ橋線到难波，换乘阪神电车到西九条，再换乘 JR 桜咲线前往环球城站（ユニバーサルシティ駅，沟槽的片假名）。</p>
+
+<p>玩得很开心，放一些印象深刻的图片</p>
+
+<p><img src="/assets/images/JapanTrip/universal_gate.jpg" alt="gate" />
+<img src="/assets/images/JapanTrip/universal.jpg" alt="ball" /></p>
+
+<p><img src="/assets/images/JapanTrip/SCP.jpg" alt="SCP" /></p>
+<center>蜘蛛侠排队路上的 SCP 基金会，这个项目超好玩</center>
+<p><br /></p>
+
+<p><img src="/assets/images/JapanTrip/unilunch.jpg" alt="lunch" /></p>
+<center>午饭：小黄人炸鸡套餐（2100日元，似乎比上迪便宜）</center>
+<p><br /></p>
+
+<p><img src="/assets/images/JapanTrip/huache.jpg" alt="huache" /></p>
+<center>花车</center>
+<p><br /></p>
+
+<p><img src="/assets/images/JapanTrip/suisekai.jpg" alt="waterworld" /></p>
+<center>水世界表演</center>
+<p><br /></p>
+
+<p><img src="/assets/images/JapanTrip/hogwartz.jpg" alt="hogwartz" /></p>
+<center>霍格沃茨城堡</center>
+<p><br /></p>
+
+<p>随后去梅田吃了大阪烧（お好み焼き），三脚猫日语 + 英语 + 肢体语言激情点单（这不是我们玉溪的炸洋芋饼吗，下次记得标明出处
+<img src="/assets/images/JapanTrip/okonomiyaki.jpg" alt="okonomiyaki" /></p>
+
+<hr />
+
+<h1 id="1-月-17-日京都">1 月 17 日：京都</h1>
+<p>早上睡死过去了，大伙一起去 JR 大阪站吃了拉面作为早午饭，随后乘坐 JR 东海道、山阳本线前往京都。</p>
+
+<h2 id="路途大阪站rightarrow京都民宿">路途（大阪站$\rightarrow$京都民宿）</h2>
+<p><img src="/assets/images/JapanTrip/meijiFactory.jpg" alt="meiji" /></p>
+<center>明治的工厂，好巨大的巧克力</center>
+<p><br /></p>
+
+<p><img src="/assets/images/JapanTrip/kyotoEki.jpg" alt="kyotostation" /></p>
+<center>京都塔 &amp; JR京都站</center>
+<p><br /></p>
+
+<p><img src="/assets/images/JapanTrip/Higashi_Honen.jpg" alt="honenji" /></p>
+<center>东本愿寺</center>
+<p><br /></p>
+
+<h2 id="清水寺">清水寺</h2>
+<p>从民宿到清水寺并没有什么比步行明显节约时间的公共交通，于是我们骑自行车从民宿前往清水寺（赞美民宿的自行车）。</p>
+
+<p>这几天的天气很棒，观光体验极佳！</p>
+
+<p><img src="/assets/images/JapanTrip/farShimizu.jpg" alt="smz" /></p>
+<center>远眺清水寺和好吃的抹茶冰淇淋😋</center>
+<p><br /></p>
+
+<p><img src="/assets/images/JapanTrip/smz1.jpg" alt="smz1" /></p>
+<center>清水寺 &amp; 御神签 (おみくじ)</center>
+<p><br /></p>
+
+<p><img src="/assets/images/JapanTrip/blogBG.jpg" alt="blogBG" /></p>
+<center>回收博客封面</center>
+<p><br /></p>
+
+<p>在拍摄上图的位置合影一张，虽然并看不出来在哪合的影（
+<img src="/assets/images/JapanTrip/shashin.jpg" alt="groupPhoto" /></p>
+
+<p>此后去三年半坐着小憩了一下，喝了一杯 “Black Tea With Milk”，付款后想起这好像就是奶茶（</p>
+
+<h2 id="伏见稻荷大社">伏见稻荷大社</h2>
+<p>骑自行车前往伏见稻荷大社，很幸运违停的自行车没有被晶哥扣走。
+<img src="/assets/images/JapanTrip/bike.jpg" alt="bike" /></p>
+<center>注：左一是我</center>
+<p><br /></p>
+
+<p><img src="/assets/images/JapanTrip/daohe1.jpg" alt="daisha" /></p>
+
+<p><img src="/assets/images/JapanTrip/torii.jpg" alt="torii" />
+<img src="/assets/images/JapanTrip/toriiDark.jpg" alt="torii" /></p>
+<center>千张鸟居</center>
+<p><br /></p>
+
+<h2 id="晚饭嗯造和牛">晚饭：嗯造和牛</h2>
+<p>晚饭决定吃和牛，遂骑行近 4 公里回到 JR 京都站附近寻找和牛店。走进了若干家早已预约满的会员制餐厅后，我们找到了一家无需预约、排队不长且评分尚可的店：<a href="https://www.bing.com/maps?osid=26635fdc-b3fe-42b7-bb4b-d15239555f0b&amp;cp=34.988291~135.748508&amp;lvl=16&amp;pi=0&amp;imgid=9c646c9b-1d23-4ac1-bc0f-38e745275251&amp;v=2&amp;sV=2&amp;form=S00027">牛カツ</a></p>
+
+<p><img src="/assets/images/JapanTrip/wagyu.jpg" alt="gyuukatsu" /></p>
+
+<p>和 Orange 一起豪掷 5000 日元点了一份最高级的黑毛和牛套餐！</p>
+
+<p><img src="/assets/images/JapanTrip/wagyu_food.jpg" alt="wagyu" /></p>
+
+<p>将每片和牛放到面前的小灶上略烤一下，搭配提供的 6 种各有特色酱料，鲜香浓郁、入口即化，不愧极品之名。牛排吃完后，将剩下的无菌蛋淋在米饭上，辅以几片盐葱，一顿兼具美味与满足感的晚饭完美结束。</p>
+
+<p>写饿了，觅食去了。欲知后事如何，且看关东篇分解！</p>]]></content><author><name>Leighton</name></author><category term="行世路" /><summary type="html"><![CDATA[去年 9 月末与在沪的高中同学们聚餐时，与两位同学提出了寒假去日本旅行的想法。经过一番安排，最终包括我在内的 5 人于 1 月 14 日从大阪关西机场顺利入境，开启了我们七天八夜的日本之旅。]]></summary></entry><entry><title type="html">基于KCF的地面目标追踪</title><link href="http://localhost:4000/airsim/KCF-based-track/" rel="alternate" type="text/html" title="基于KCF的地面目标追踪" /><published>2024-01-02T00:00:00+08:00</published><updated>2024-01-02T00:00:00+08:00</updated><id>http://localhost:4000/airsim/KCF-based-track</id><content type="html" xml:base="http://localhost:4000/airsim/KCF-based-track/"><![CDATA[<p>这周在 AirSim 里做了一个基于 KCF 算法的地面（下方）物体追踪仿真，写一篇博客记录一下，以防后面忘记现在在干什么（</p>
 
 <hr />
 
@@ -998,16 +1176,4 @@ $$</div>
 
 <div class="kdmath">$$
 e^{i\theta}=\cos\theta+i\sin\theta
-$$</div>]]></content><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><category term="Jekyll" /><summary type="html"><![CDATA[My blog has been established successfully today. However, Jekyll’s native Markdown interpreter doesn’t always work well with Latex. This article records how I add $\LaTeX$ support for my site.]]></summary></entry><entry><title type="html">Welcome To Jekyll</title><link href="http://localhost:4000/jekyll/welcome-to-jekyll/" rel="alternate" type="text/html" title="Welcome To Jekyll" /><published>2016-05-20T00:00:00+08:00</published><updated>2016-05-20T00:00:00+08:00</updated><id>http://localhost:4000/jekyll/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/welcome-to-jekyll/"><![CDATA[<p>You’ll find this post in your <code class="language-plaintext highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="language-plaintext highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
-
-<p>To add new posts, simply add a file in the <code class="language-plaintext highlighter-rouge">_posts</code> directory that follows the convention <code class="language-plaintext highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
-
-<p>Jekyll also offers powerful support for code snippets:</p>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
-<span class="k">end</span>
-<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
-<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
-
-<p>Check out the <a href="http://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>]]></content><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><category term="Jekyll" /><summary type="html"><![CDATA[You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.]]></summary></entry></feed>
+$$</div>]]></content><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><category term="Jekyll" /><summary type="html"><![CDATA[My blog has been established successfully today. However, Jekyll’s native Markdown interpreter doesn’t always work well with Latex. This article records how I add $\LaTeX$ support for my site.]]></summary></entry></feed>
