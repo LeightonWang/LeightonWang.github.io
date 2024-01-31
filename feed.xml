@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-01-02T23:17:35+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Leighton’s Blog</title><subtitle>Learning &amp; Sharing
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-01-31T12:45:57+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Leighton’s Blog</title><subtitle>Learning &amp; Sharing
 </subtitle><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><entry><title type="html">基于KCF的地面目标追踪</title><link href="http://localhost:4000/airsim/KCF-based-track/" rel="alternate" type="text/html" title="基于KCF的地面目标追踪" /><published>2024-01-02T00:00:00+08:00</published><updated>2024-01-02T00:00:00+08:00</updated><id>http://localhost:4000/airsim/KCF-based-track</id><content type="html" xml:base="http://localhost:4000/airsim/KCF-based-track/"><![CDATA[<p>这周在 AirSim 里做了一个基于 KCF 算法的地面（下方）物体追踪仿真，写一篇博客记录一下，以防后面忘记现在在干什么（</p>
 
 <hr />
@@ -716,7 +716,7 @@ $$</div>
 </ol>
 
 <h1 id="airsim-安装">AirSim 安装</h1>
-<p>此前已完成，此处不再赘述。可参考https://zhuanlan.zhihu.com/p/618440744</p>
+<p>此前已完成，此处不再赘述。可参考<a href="https://zhuanlan.zhihu.com/p/618440744">这篇博客</a></p>
 
 <h1 id="px4-安装与配置">PX4 安装与配置</h1>
 <ol>
