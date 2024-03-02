@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>AirSim：人工势场法避障 | Leighton’s Blog</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="AirSim：人工势场法避障" />
+<meta name="author" content="Leighton" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="参考一些已有的工作，在 AirSim 中实现了基于人工势场法（Artificial Potential Field, APF）和 LQR 控制的无人机避障任务仿真。" />
+<meta property="og:description" content="参考一些已有的工作，在 AirSim 中实现了基于人工势场法（Artificial Potential Field, APF）和 LQR 控制的无人机避障任务仿真。" />
+<link rel="canonical" href="http://localhost:4000/airsim/APF-test/" />
+<meta property="og:url" content="http://localhost:4000/airsim/APF-test/" />
+<meta property="og:site_name" content="Leighton’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-03-02T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="AirSim：人工势场法避障" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Leighton"},"dateModified":"2024-03-02T00:00:00+08:00","datePublished":"2024-03-02T00:00:00+08:00","description":"参考一些已有的工作，在 AirSim 中实现了基于人工势场法（Artificial Potential Field, APF）和 LQR 控制的无人机避障任务仿真。","headline":"AirSim：人工势场法避障","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/airsim/APF-test/"},"url":"http://localhost:4000/airsim/APF-test/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Leighton&apos;s Blog" />
+<link rel="icon" type="image/png" sizes="16x16"  href="/favicons/favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff"></head>
+<body><header class="site-header">
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      inlineMath: [['$','$']]
+    }
+  });
+</script>
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Leighton&#39;s Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">关于本站</a><a class="page-link" href="/categories/">归档</a></div>
+      </nav></div>
+</header>
+<script>
+      document.addEventListener("scroll", function () {
+        var scrollPosition = window.scrollY;
+  
+        // 设置一个阈值，当滚动超过这个值时，添加滚动后的样式
+        var threshold = 100;
+  
+        var header = document.querySelector(".site-header");
+  
+        if (scrollPosition > threshold) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+    </script>
+
+    <div class="page-header"></div>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">AirSim：人工势场法避障</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2024-03-02T00:00:00+08:00" itemprop="datePublished">
+        Mar 2, 2024
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Leighton</span></span></p>
+
+      
+		  <div class="blog-tags">
+		  归档：<a href="/categories/#AirSim">AirSim</a></div></header>
+
+  <HR>
+  <p>目录</p>
+  <ul><li><a href="#势函数与势场">势函数与势场</a><ul><li><a href="#势函数">势函数</a></li><li><a href="#计算方法">计算方法</a></li></ul></li><li><a href="#程序编写">程序编写</a></li><li><a href="#避障效果测试">避障效果测试</a></li><li><a href="#高速飞行测试">高速飞行测试</a></li></ul>
+  <HR>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>参考一些已有的工作，在 AirSim 中实现了基于人工势场法（Artificial Potential Field, APF）和 LQR 控制的无人机避障任务仿真。</p>
+
+<hr />
+
+<h1 id="势函数与势场">势函数与势场</h1>
+<h2 id="势函数">势函数</h2>
+<p>常见的斥力势函数为
+<span class="kdmath">$U_{\rm rep}(P)=\begin{cases}
+\dfrac 12 \eta(\dfrac{1}{d(P,P_{\rm ob})}-\dfrac 1Q)^2, & d(P,P_{\rm ob})\leq Q \\
+0,& d(P,P_{\rm ob})> Q
+\end{cases}$</span></p>
+
+<p>常见的引力势函数为
+<span class="kdmath">$U_{\rm att}(P)=\dfrac 12\xi d^2(P,P_{\rm goal})$</span></p>
+
+<p>$P$ 为无人机当前坐标，$P_{\rm ob}$ 为被计算势函数的障碍物的坐标，$Q$ 为障碍物的作用范围，$P_{\rm goal}$ 为目标点的坐标。</p>
+
+<h2 id="计算方法">计算方法</h2>
+<p>计算的方法为对势能计算负梯度得到下降方向，以该方向作为加速度的方向，通过加速度-速度-位置的方法实现控制。具体的计算方法：</p>
+
+<div class="kdmath">$$
+F_{\rm att}=-\nabla U_{\rm att}(P)=-\xi (P,P_{\rm goal})
+$$</div>
+
+<div class="kdmath">$$
+F_{\rm rep}^i=-\nabla U_{\rm rep}(P)=\begin{cases}
+\eta(\dfrac{1}{d(P,P_{\rm ob})} - \dfrac 1Q)\cdot\dfrac{1}{d^3(P,P_{\rm ob})} \cdot(P-P_{\rm ob}), & d(P,P_{\rm ob})\leq Q \\
+0,& d(P,P_{\rm ob})> Q
+\end{cases}
+$$</div>
+
+<div class="kdmath">$$
+F_{\rm rep}=\sum_i F_{\rm rep}^i
+$$</div>
+
+<hr />
+
+<h1 id="程序编写">程序编写</h1>
+<p>使用 AirSim 的 Python API 编写仿真程序。程序逻辑如下：</p>
+
+<ul>
+  <li>在从当前航路点 $W_a$ 前往目标航路点 $W_b$ 的过程中：
+    <ul>
+      <li>计算矩阵 $A=\dfrac{1}{\Vert W_a-W_b \Vert^2}\left[I_2-(W_a-W_b)(W_a-W_b)^\top\right]$，其中 $I_2$ 是 2 阶单位矩阵。</li>
+      <li>在每个控制周期 ${\rm d}t$ 内，进行航路点跟踪
+        <ul>
+          <li>计算：
+            <ul>
+              <li>$P_t=P-W_b$，$P$ 为无人机当前位置</li>
+            </ul>
+          </li>
+          <li>若未检测到障碍物，则执行航路点跟踪
+            <ul>
+              <li>$U_1=K_0P_t+K_1AP_t$，其中 $K_0,K_1\in\mathbb{R}$ 是系数</li>
+              <li>对 $U_1$ 进行限幅：若 $\vert U_1\vert &gt; U_{tmax}$，则 $U_1\leftarrow U_{tmax}\frac{U_1}{\vert U_1\vert}$</li>
+            </ul>
+          </li>
+          <li>若检测到障碍物，则进行避障
+            <ul>
+              <li>$U_1=F_{att}+F_{rep}$</li>
+              <li>对 $U_1$ 进行限幅：若 $\vert U_1\vert &gt; U_{amax}$，则 $U_1\leftarrow U_{amax}\frac{U_1}{\vert U_1\vert}$</li>
+            </ul>
+          </li>
+          <li>$U=\frac{1}{K_2}(U_1-V)$</li>
+        </ul>
+      </li>
+      <li>使用 LQR 执行计算得到的期望加速度
+        <ul>
+          <li>计算期望速度 $V_{next}=V+U\cdot {\rm d}t$</li>
+          <li>计算期望位置 $P_{next}=U+V_{next}\cdot {\rm d}t$</li>
+          <li>调用 LQR 控制函数，设置期望的位置和速度分别为 $V_{next}, P_{next}$</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h1 id="避障效果测试">避障效果测试</h1>
+<p>使用 AirSim 自带的 Blocks 环境，通过调整起始位置、设置航路点，进行一个简单的避障仿真测试。飞控模式为 simple_flight。无人机的路径如下图：
+<img src="/assets/images/airsim/APF_test.png" alt="APF_test" /></p>
+
+<p>此图为俯视图，无人机从图片下方飞向上方。飞行过程中未发生碰撞（图片左上方显示 Collision Count: 0）。</p>
+
+<hr />
+
+<h1 id="高速飞行测试">高速飞行测试</h1>
+<p>结合毕设的目标（评估飞行平台的计算性能），考虑如何体现计算对该任务的影响。</p>
+
+<p>计算性能会直接影响到计算处理时间。不难想到，若在附近无障碍状态下的飞行速度变快，通过摄像头检测障碍物可用的时间便会变短；若计算时间不足，则无人机可能无法及时检测出障碍物、无法及时作出避障动作。</p>
+
+<p>在上一节中，我们的使用的 $U_{tmax}=3$。我们通过改变无障碍时的速度限幅参数 $U_{tmax}$ 来改变最大幅度限制。当调整 $U_{tmax}=6$ 时，无人机会在飞行过程中与障碍物发生剐蹭。（做这两个视频的时候似乎在用耳机听歌，有一些奇怪的 BGM）</p>
+
+<div class="video-container" style="
+    position: relative;
+    padding-bottom:56.25%;
+    padding-top:30px;
+    height:0;
+    overflow:hidden;
+">
+<iframe src="/assets/images/airsim/U6.mp4" width="560" height="315" frameborder="0" allowfullscreen="" style="
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+">
+</iframe>
+</div>
+<p><br /></p>
+
+<p>而当 $U_{tmax}=7$ 时，无人机会径直撞上障碍物。</p>
+<div class="video-container" style="
+    position: relative;
+    padding-bottom:56.25%;
+    padding-top:30px;
+    height:0;
+    overflow:hidden;
+">
+<iframe src="/assets/images/airsim/U7.mp4" width="560" height="315" frameborder="0" allowfullscreen="" style="
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+">
+</iframe>
+</div>
+
+<p><br /></p>
+
+<p>在设想中，算力的提升应该可以允许无人机以更大的速度上限进行无碰撞飞行。在以上实例中，控制周期为 ${\rm d}t=\frac 1f=0.3s$；考虑到算力提升可以支持更高的控制周期，故我尝试调整 ${\rm}t=0.1s$。调整后，无人机确实可以做到以 $U_{amax}=7$ 的条件下无碰撞飞行。然而我在打开 Xbox 录屏程序尝试记录下该过程时，无人机却在飞行过程中发生了碰撞。这说明电脑 CPU 占用导致的算力降低导致了飞行质量的降低，进一步佐证了设想的正确性。在我把 ${\rm d}t$ 调整至 $0.07s$ 后，无人机可在录屏程序开启的前提下实现无障碍飞行了：</p>
+<div class="video-container" style="
+    position: relative;
+    padding-bottom:56.25%;
+    padding-top:30px;
+    height:0;
+    overflow:hidden;
+">
+<iframe src="/assets/images/airsim/U7dt007.mp4" width="560" height="315" frameborder="0" allowfullscreen="" style="
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+">
+</iframe>
+</div>
+
+<p><br /></p>
+
+<p>接下来，我们尝试将计算程序迁移到其他设备（如 WSL2、树莓派等）上进行硬(软)件在环仿真。</p>
+
+  </div><a class="u-url" href="/airsim/APF-test/" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <!-- <p class="feed-subscribe">
+          <a href="http://localhost:4000/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p> -->
+        <ul class="contact-list">
+          <li class="p-name">Leighton Wang</li>
+          <li><a class="u-email" href="mailto:wtrwang7@sjtu.edu.cn">wtrwang7@sjtu.edu.cn</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Learning &amp; Sharing
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li>
+  <a rel="me" href="https://github.com/LeightonWang" target="_blank" title="github">
+    <svg class="svg-icon grey">
+      <use xlink:href="/assets/minima-social-icons.svg#github"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://space.bilibili.com/8367854" target="_blank" title="youtube">
+    <svg class="svg-icon grey">
+      <use xlink:href="/assets/minima-social-icons.svg#youtube"></use>
+    </svg>
+  </a>
+</li>
+</ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
