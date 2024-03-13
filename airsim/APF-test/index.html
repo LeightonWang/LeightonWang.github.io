@@ -86,7 +86,7 @@
 
   <HR>
   <p>目录</p>
-  <ul><li><a href="#势函数与势场">势函数与势场</a><ul><li><a href="#势函数">势函数</a></li><li><a href="#计算方法">计算方法</a></li></ul></li><li><a href="#程序编写">程序编写</a></li><li><a href="#避障效果测试">避障效果测试</a></li><li><a href="#高速飞行测试">高速飞行测试</a></li></ul>
+  <ul><li><a href="#势函数与势场">势函数与势场</a><ul><li><a href="#势函数">势函数</a></li><li><a href="#计算方法">计算方法</a></li></ul></li><li><a href="#程序编写">程序编写</a></li><li><a href="#避障效果测试">避障效果测试</a></li><li><a href="#高速飞行测试">高速飞行测试</a></li><li><a href="#三维-apf-避障">三维 APF 避障</a><ul><li><a href="#几何控制">几何控制</a></li><li><a href="#避障算法">避障算法</a></li></ul></li></ul>
   <HR>
 
   <div class="post-content e-content" itemprop="articleBody">
@@ -243,6 +243,19 @@ $$</div>
 <p><br /></p>
 
 <p>接下来，我们尝试将计算程序迁移到其他设备（如 WSL2、树莓派等）上进行硬(软)件在环仿真。</p>
+
+<hr />
+
+<h1 id="三维-apf-避障">三维 APF 避障</h1>
+<p>原有的代码基于 LQR + 姿态角控制实现了无人机在水平方向上的避障任务。我采用了<a href="https://zhuanlan.zhihu.com/p/485796378">几何控制</a>的方法实现了在三维空间中的 APF 避障。</p>
+
+<h2 id="几何控制">几何控制</h2>
+<p>输入为期望的无人机位置、姿态、机体角速率 $x_d,R_d,\Omega_d$，输出为无人机的力与力矩 $f,M$。可由  $f, M$ 映射得到四旋翼各个电机的输入 $\sigma_1,\sigma_2,\sigma_3,\sigma_4$，进而通过 AirSim 的电机控制接口<code class="language-plaintext highlighter-rouge">client.moveByMotorPWMsAsync</code>进行控制。</p>
+
+<h2 id="避障算法">避障算法</h2>
+<p>将原有的 Carrot Chasing 轨迹跟踪及 APF 避障进行了到 3 维的扩展，但并没有局部极小值的处理。在 Blocks 环境中的测试效果如下：</p>
+
+<p><img src="/assets/images/airsim/3dAPF.gif" alt="3dAPF" /></p>
 
   </div><a class="u-url" href="/airsim/APF-test/" hidden></a>
 </article>

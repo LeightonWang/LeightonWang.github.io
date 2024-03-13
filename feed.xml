@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-03-02T22:48:10+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Leighton’s Blog</title><subtitle>Learning &amp; Sharing
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-03-13T17:28:49+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Leighton’s Blog</title><subtitle>Learning &amp; Sharing
 </subtitle><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><entry><title type="html">AirSim：人工势场法避障</title><link href="http://localhost:4000/airsim/APF-test/" rel="alternate" type="text/html" title="AirSim：人工势场法避障" /><published>2024-03-02T00:00:00+08:00</published><updated>2024-03-02T00:00:00+08:00</updated><id>http://localhost:4000/airsim/APF-test</id><content type="html" xml:base="http://localhost:4000/airsim/APF-test/"><![CDATA[<p>参考一些已有的工作，在 AirSim 中实现了基于人工势场法（Artificial Potential Field, APF）和 LQR 控制的无人机避障任务仿真。</p>
 
 <hr />
@@ -151,7 +151,20 @@ $$</div>
 
 <p><br /></p>
 
-<p>接下来，我们尝试将计算程序迁移到其他设备（如 WSL2、树莓派等）上进行硬(软)件在环仿真。</p>]]></content><author><name>Leighton</name></author><category term="AirSim" /><summary type="html"><![CDATA[参考一些已有的工作，在 AirSim 中实现了基于人工势场法（Artificial Potential Field, APF）和 LQR 控制的无人机避障任务仿真。]]></summary></entry><entry><title type="html">日本之行 关西篇</title><link href="http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-japan-kansai/" rel="alternate" type="text/html" title="日本之行 关西篇" /><published>2024-01-31T00:00:00+08:00</published><updated>2024-01-31T00:00:00+08:00</updated><id>http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-japan-kansai</id><content type="html" xml:base="http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-japan-kansai/"><![CDATA[<p>去年 9 月末与在沪的高中同学们聚餐时，与两位同学提出了寒假去日本旅行的想法。经过一番安排，最终包括我在内的 5 人于 1 月 14 日从大阪关西机场顺利入境，开启了我们七天八夜的日本之旅。</p>
+<p>接下来，我们尝试将计算程序迁移到其他设备（如 WSL2、树莓派等）上进行硬(软)件在环仿真。</p>
+
+<hr />
+
+<h1 id="三维-apf-避障">三维 APF 避障</h1>
+<p>原有的代码基于 LQR + 姿态角控制实现了无人机在水平方向上的避障任务。我采用了<a href="https://zhuanlan.zhihu.com/p/485796378">几何控制</a>的方法实现了在三维空间中的 APF 避障。</p>
+
+<h2 id="几何控制">几何控制</h2>
+<p>输入为期望的无人机位置、姿态、机体角速率 $x_d,R_d,\Omega_d$，输出为无人机的力与力矩 $f,M$。可由  $f, M$ 映射得到四旋翼各个电机的输入 $\sigma_1,\sigma_2,\sigma_3,\sigma_4$，进而通过 AirSim 的电机控制接口<code class="language-plaintext highlighter-rouge">client.moveByMotorPWMsAsync</code>进行控制。</p>
+
+<h2 id="避障算法">避障算法</h2>
+<p>将原有的 Carrot Chasing 轨迹跟踪及 APF 避障进行了到 3 维的扩展，但并没有局部极小值的处理。在 Blocks 环境中的测试效果如下：</p>
+
+<p><img src="/assets/images/airsim/3dAPF.gif" alt="3dAPF" /></p>]]></content><author><name>Leighton</name></author><category term="AirSim" /><summary type="html"><![CDATA[参考一些已有的工作，在 AirSim 中实现了基于人工势场法（Artificial Potential Field, APF）和 LQR 控制的无人机避障任务仿真。]]></summary></entry><entry><title type="html">日本之行 关西篇</title><link href="http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-japan-kansai/" rel="alternate" type="text/html" title="日本之行 关西篇" /><published>2024-01-31T00:00:00+08:00</published><updated>2024-01-31T00:00:00+08:00</updated><id>http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-japan-kansai</id><content type="html" xml:base="http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-japan-kansai/"><![CDATA[<p>去年 9 月末与在沪的高中同学们聚餐时，与两位同学提出了寒假去日本旅行的想法。经过一番安排，最终包括我在内的 5 人于 1 月 14 日从大阪关西机场顺利入境，开启了我们七天八夜的日本之旅。</p>
 
 <p>由于我们其中的 4 人都是初到日本，希望能尽可能多地领略这个国家的风光，行程安排得显得有些许仓促。在此对这趟梦幻的旅行作一个简单的记录，以供日后回味。</p>
 
