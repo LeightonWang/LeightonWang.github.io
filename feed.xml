@@ -1,5 +1,228 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-03-13T17:28:49+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Leighton’s Blog</title><subtitle>Learning &amp; Sharing
-</subtitle><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><entry><title type="html">AirSim：人工势场法避障</title><link href="http://localhost:4000/airsim/APF-test/" rel="alternate" type="text/html" title="AirSim：人工势场法避障" /><published>2024-03-02T00:00:00+08:00</published><updated>2024-03-02T00:00:00+08:00</updated><id>http://localhost:4000/airsim/APF-test</id><content type="html" xml:base="http://localhost:4000/airsim/APF-test/"><![CDATA[<p>参考一些已有的工作，在 AirSim 中实现了基于人工势场法（Artificial Potential Field, APF）和 LQR 控制的无人机避障任务仿真。</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-04-08T15:14:30+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Leighton’s Blog</title><subtitle>Learning &amp; Sharing
+</subtitle><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><entry><title type="html">日本之行 关东篇</title><link href="http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-japan-kandou/" rel="alternate" type="text/html" title="日本之行 关东篇" /><published>2024-04-08T00:00:00+08:00</published><updated>2024-04-08T00:00:00+08:00</updated><id>http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-japan-kandou</id><content type="html" xml:base="http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-japan-kandou/"><![CDATA[<p>自寒假写了关西的游记后，由于懒癌晚期一直没有把关东篇也写掉。在这毕设中期答辩憋不出几个字的今天，把这个坑先给挖开。</p>
+
+<hr />
+
+<h1 id="1-月-18-日富士河口湖">1 月 18 日：富士河口湖</h1>
+
+<h2 id="交通京都--富士河口湖">交通：京都 → 富士河口湖</h2>
+<p>这天从京都前往富士河口湖（かわぐちこ）。谷歌地图说最快的方法是新干线坐到东京，前往新宿转乘富士急巴士，但是鉴于计划下一天才去东京，感觉有点怪异，故决定乘坐新干线到静冈县的三島（みしま），在那里乘坐富士急巴士前往东京。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/kyoto2kawaguchiko.png" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">路线</div>
+</center>
+<p><br /></p>
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/kyoto_shinkansen.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">京都站新干线站台，我们乘坐的是 10:08 的光（ひかり）号</div>
+</center>
+<p><br /></p>
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/mishima.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">三岛市远眺富士山</div>
+</center>
+
+<p><br /></p>
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/mishima_nihonU.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">三岛市 日本大学 (Nihon University) 三岛校区</div>
+</center>
+
+<h2 id="河口湖风光">河口湖风光</h2>
+<p>于中午某个时刻抵达河口湖。在三岛站买巴士票的时候太着急（发车前两分钟），把售票窗口压票的小物件不小心顺走了 :( 于是到站后拜托運転士さん帮忙送回去了。事实证明标日上前15课加一些肢体语言和一些英语还是可以交流的 XD</p>
+
+<p>这天天气很棒，真的很幸运！</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/lawson.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">河口湖站西边的经典打卡地 罗森</div>
+</center>
+<p><br /></p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/kawaguchiko_house.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">民宿和窗中的富士山</div>
+</center>
+<p><br /></p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/kawa_eki.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">傍晚的河口湖站</div>
+</center>
+<p><br />
+和大伙闲逛，遇到了一列从站东侧道口（踏切）驶入的列车</p>
+<div class="video-container" style="
+    position: relative;
+    padding-bottom:56.25%;
+    padding-top:30px;
+    height:0;
+    overflow:hidden;
+">
+<iframe src="/assets/images/JapanTrip/train.mp4" width="560" height="315" frameborder="0" allowfullscreen="" style="
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+">
+</iframe>
+</div>
+
+<hr />
+
+<h1 id="1-月-19-日东京镰仓">1 月 19 日：东京、镰仓</h1>
+<p>这天前往东京。从河口湖站乘坐富士急巴士到达新宿 Busta （就是宇宙中心新宿站的对面）</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/bus2tokyo.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">在首都高上望向新宿（堵车了）</div>
+</center>
+<p><br /></p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/shinjuku.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">新宿站（新宿 Busta 一侧摄）</div>
+</center>
+
+<h2 id="镰仓--江ノ電">镰仓 &amp; 江ノ電</h2>
+<p>Gucci 同学对麻衣学姐爱得热烈，无论如何想去一趟镰仓。于是没找到空行李柜的众人拖着箱子乘坐小田急电前往神奈川县藤泽、镰仓。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/kamakura_koukoumae.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">镰仓高校前（侧边摄）</div>
+</center>
+<p><br /></p>
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/kamakura.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">坐在海边小喝一杯 @<a href="https://maps.app.goo.gl/jtYX6SA4kUY1cLnh7">トライアングル七里ガ浜</a></div>
+</center>
+<p><br /></p>
+
+<h2 id="栖东京都墨田区">栖：东京都墨田区</h2>
+<p>东京时间下午五点左右，从藤泽前往在东京的住处墨田区 京成曳舟（けいせいひきふね）站附近。乘坐小田急線（藤沢→新宿）、都営地下鉄新宿線（新宿→馬喰横山）、都営地下鉄浅草線（直通京成押上線，東日本橋→京成曳舟）</p>
+
+<p>为什么要绕去新宿？当然是因为买了小田急和江之电的一日通票TAT</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/shimokitazawa.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">下　北　沢</div>
+</center>
+<p><br />
+住处离东京晴空塔不远。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/skytree.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Tokyo Skytree</div>
+</center>
+<p><br /></p>
+
+<p>民宿房东的地址信息写的不太对，我们照着门牌号敲开了本地一位老奶奶的门。一顿艰难的沟通后老奶奶突然明白了我们应该是附近那家民宿的住客，给我们指了民宿方向，感谢她，感谢《标准日本语》XP</p>
+
+<hr />
+
+<h1 id="1-月-20-日浅草东京塔涩谷">1 月 20 日：浅草、东京塔、涩谷</h1>
+<p>一觉起来，Gucci 和 Woozie 都睡昏过去了，没有醒来的意思，于是决定分头行动。在二楼餐桌上给他们留下 15000 円后，与 Sam 和 Ms.Pu 开始了今天的行程。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/money4gucci.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">父爱如山（bushi）</div>
+</center>
+<p><br /></p>
+
+<h2 id="浅草寺">浅草寺</h2>
+<p>这次乘坐东武晴空塔线从曳舟前往浅草。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/Tobu.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">曳舟4号站台（原友真是无处不在）</div>
+</center>
+<p><br /></p>
+
+<p>在浅草寺门口吃了寿司</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/sushiEi.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">午饭 @<a href="https://maps.app.goo.gl/zQ56LmAVDcQoMieJ9">すし栄</a></div>
+</center>
+<p><br /></p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/sensoji.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">浅草寺</div>
+</center>
+<p><br /></p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/senso_omikuji.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">好晦气的御神签</div>
+</center>
+<p><br /></p>
+
+<h2 id="东京塔涩谷">东京塔、涩谷</h2>
+<p>累了，后面的明天再写</p>]]></content><author><name>Leighton</name></author><category term="行世路" /><summary type="html"><![CDATA[自寒假写了关西的游记后，由于懒癌晚期一直没有把关东篇也写掉。在这毕设中期答辩憋不出几个字的今天，把这个坑先给挖开。]]></summary></entry><entry><title type="html">AirSim：人工势场法避障</title><link href="http://localhost:4000/airsim/APF-test/" rel="alternate" type="text/html" title="AirSim：人工势场法避障" /><published>2024-03-02T00:00:00+08:00</published><updated>2024-03-02T00:00:00+08:00</updated><id>http://localhost:4000/airsim/APF-test</id><content type="html" xml:base="http://localhost:4000/airsim/APF-test/"><![CDATA[<p>参考一些已有的工作，在 AirSim 中实现了基于人工势场法（Artificial Potential Field, APF）和 LQR 控制的无人机避障任务仿真。</p>
 
 <hr />
 
@@ -1312,4 +1535,4 @@ $$</div>
 <p>此，我们得到了 Kalman 滤波器的后半部分——Correction （Update）Step。Kalman 滤波器通过 Prediction step 和 Correction step 交替迭代，成功地通过 $p(x_t
 | u_{1:t−1}, y_{1:t})$ 来计算 $p(x_{t+1} | u_{1:t}
 , y_{1:t+1})$。值得注意的是，该算法需要一个初始分布 $p(x_1)$，用于求 $p(x_1 | y_1)$，
-所以我们需要指定 $x_1$ 的先验分布 $x_1\sim \mathcal N (m_1, P_1)$。</p>]]></content><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><category term="MISC" /><summary type="html"><![CDATA[假期总该学点东西。对 SLAM 技术有一些兴趣，小开一个坑。]]></summary></entry><entry><title type="html">My First Blog</title><link href="http://localhost:4000/jekyll/first-blog/" rel="alternate" type="text/html" title="My First Blog" /><published>2023-07-10T00:00:00+08:00</published><updated>2023-07-10T00:00:00+08:00</updated><id>http://localhost:4000/jekyll/first-blog</id><content type="html" xml:base="http://localhost:4000/jekyll/first-blog/"><![CDATA[<p>This is my first blog! Hello World!</p>]]></content><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><category term="Jekyll" /><summary type="html"><![CDATA[This is my first blog! Hello World!]]></summary></entry></feed>
+所以我们需要指定 $x_1$ 的先验分布 $x_1\sim \mathcal N (m_1, P_1)$。</p>]]></content><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><category term="MISC" /><summary type="html"><![CDATA[假期总该学点东西。对 SLAM 技术有一些兴趣，小开一个坑。]]></summary></entry></feed>
