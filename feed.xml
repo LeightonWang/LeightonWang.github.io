@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-04-08T15:14:30+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Leighton’s Blog</title><subtitle>Learning &amp; Sharing
-</subtitle><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><entry><title type="html">日本之行 关东篇</title><link href="http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-japan-kandou/" rel="alternate" type="text/html" title="日本之行 关东篇" /><published>2024-04-08T00:00:00+08:00</published><updated>2024-04-08T00:00:00+08:00</updated><id>http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-japan-kandou</id><content type="html" xml:base="http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-japan-kandou/"><![CDATA[<p>自寒假写了关西的游记后，由于懒癌晚期一直没有把关东篇也写掉。在这毕设中期答辩憋不出几个字的今天，把这个坑先给挖开。</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-04-09T20:22:13+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Leighton’s Blog</title><subtitle>Learning &amp; Sharing
+</subtitle><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><entry><title type="html">日本之行 关东篇</title><link href="http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-japan-kantou/" rel="alternate" type="text/html" title="日本之行 关东篇" /><published>2024-04-08T00:00:00+08:00</published><updated>2024-04-08T00:00:00+08:00</updated><id>http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-japan-kantou</id><content type="html" xml:base="http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-japan-kantou/"><![CDATA[<p>自寒假写了关西的游记后，由于懒癌晚期一直没有把关东篇也写掉。在这毕设中期答辩憋不出几个字的今天，把这个坑先给挖开。</p>
 
 <hr />
 
@@ -168,7 +168,7 @@
 
 <hr />
 
-<h1 id="1-月-20-日浅草东京塔涩谷">1 月 20 日：浅草、东京塔、涩谷</h1>
+<h1 id="1-月-20-日东京漫游">1 月 20 日：东京漫游</h1>
 <p>一觉起来，Gucci 和 Woozie 都睡昏过去了，没有醒来的意思，于是决定分头行动。在二楼餐桌上给他们留下 15000 円后，与 Sam 和 Ms.Pu 开始了今天的行程。</p>
 <center>
     <img style="border-radius: 0.3125em;
@@ -222,7 +222,169 @@
 <p><br /></p>
 
 <h2 id="东京塔涩谷">东京塔、涩谷</h2>
-<p>累了，后面的明天再写</p>]]></content><author><name>Leighton</name></author><category term="行世路" /><summary type="html"><![CDATA[自寒假写了关西的游记后，由于懒癌晚期一直没有把关东篇也写掉。在这毕设中期答辩憋不出几个字的今天，把这个坑先给挖开。]]></summary></entry><entry><title type="html">AirSim：人工势场法避障</title><link href="http://localhost:4000/airsim/APF-test/" rel="alternate" type="text/html" title="AirSim：人工势场法避障" /><published>2024-03-02T00:00:00+08:00</published><updated>2024-03-02T00:00:00+08:00</updated><id>http://localhost:4000/airsim/APF-test</id><content type="html" xml:base="http://localhost:4000/airsim/APF-test/"><![CDATA[<p>参考一些已有的工作，在 AirSim 中实现了基于人工势场法（Artificial Potential Field, APF）和 LQR 控制的无人机避障任务仿真。</p>
+<p>到了东京多少要来东京塔打个卡对吧（真的只是打了个卡）
+都营浅草线 浅草→大門</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/tokyotower.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">摄于芝大神宫</div>
+</center>
+<p><br /></p>
+
+<p>此后乘坐都营大江户线（赤羽橋→青山一丁目）和半藏门线（青山一丁目→渋谷）到达涩谷。可惜去的时候还不太了解<del>牢师</del>咒回，不然一定要去和宿傩碰一碰（</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/shibuya109.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">涩谷109大厦（被体育生扔过的牌子）</div>
+</center>
+<p><br /></p>
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/JRShibuya.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">涩谷十字路口和一列品川、东京方面的山手线</div>
+</center>
+<p><br /></p>
+
+<p>此后在唐吉诃德买买买，在<a href="https://maps.app.goo.gl/wZ43KypU8d1uacd17">焼肉ライク</a>大吃了一顿烤肉（太好吃了以至于没怎么拍照，墙裂推荐）</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/ShibuyaNight.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">夜晚（拍照技术太差太差）</div>
+</center>
+<p><br /></p>
+
+<hr />
+
+<h1 id="1-月-21-日东京漫游">1 月 21 日：东京漫游</h1>
+<p>今天依然是分头行动的一天。</p>
+
+<h2 id="秋叶原">秋叶原</h2>
+<p>二刺螈当然要来秋叶原啦！</p>
+
+<p>乘坐京成押上线（直通都营浅草线，京成曳舟→浅草橋）和 JR 中央-总武线各站停车（浅草橋→秋葉原）到达秋叶原。在<a href="https://maps.app.goo.gl/n4mZFMxyYCMaGyBy9">CoCo一番屋</a>来了一顿咖喱猪排。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/ichibanya.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">咖喱猪排饭加炸鸡块（约 75 RMB）</div>
+</center>
+<p><br /></p>
+
+<p>小逛了一下，在<a href="https://maps.app.goo.gl/MrCzF4LYXbzGJC9r8">秋叶原Animate</a>买了一些周边。拍的照并不多。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/akihabara.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">秋叶原</div>
+</center>
+<p><br /></p>
+
+<p>逛完后资深二次元 Ms.Pu 想前往池袋继续逛，于是三人小组继续分头行动。我和 Sam 到附近的御茶ノ水打了卡，在<a href="https://maps.app.goo.gl/DNybaBuJJcQhBGQz7">星乃咖啡店</a>歇息了一会。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/ochanomizu.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">御茶之水“圣桥”和刚从地下驶出的<del>蚓厄</del>丸之内线</div>
+</center>
+<p><br /></p>
+
+<h2 id="须贺神社">须贺神社</h2>
+<p>此后民工水平二次元的二人前往《你的名字》圣地之一的<a href="https://maps.app.goo.gl/gk7vh34gSU7qUVtx9">须贺神社</a>打卡</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/sugaStairs.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">那把楼梯（天气不好，只能来点滤镜救一下了）</div>
+</center>
+<p><br /></p>
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/suga2.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">擦肩而过之时</div>
+</center>
+<p><br /></p>
+
+<h2 id="东大的门口">东大（的门口）</h2>
+<p>其实下午还尝试去了东京大学，只是都比较怂，被门口「関係者以外立入禁止」的牌子唬住了，遂作罢。不过从南北线东大前车站出来的时候，东京的天空一改两日的阴沉，也让人心情愉悦不少。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/akamon.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">东大赤门</div>
+</center>
+<p><br /></p>
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/ochanomizu2.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">到御茶之水找丢失的伞，得到一张映在玻璃幕墙里的天空</div>
+</center>
+<p><br /></p>
+
+<h2 id="银座">银座</h2>
+<p>第一次知道银座应该是在东野圭吾的小说里，大概是《嫌疑人X的献身》？这次可以来到这里，亲眼看看老一辈资本主义国家的从容与自信（</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/ginza.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">银座的蓝调时刻</div>
+</center>
+<p><br /></p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/ginza2.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;"></div>
+</center>
+<p><br /></p>
+
+<hr />
+
+<h1 id="1-月-22-日回程">1 月 22 日：回程</h1>
+<p>我们的日本之行在这天就告一段落了。人生第一次和出国旅行，与好朋友们一起探索、享受这广阔的世界 (=w=)</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/JapanTrip/aoto.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">从青砥回望东京，下次再见啦</div>
+</center>
+<p><br /></p>]]></content><author><name>Leighton</name></author><category term="行世路" /><summary type="html"><![CDATA[自寒假写了关西的游记后，由于懒癌晚期一直没有把关东篇也写掉。在这毕设中期答辩憋不出几个字的今天，把这个坑先给挖开。]]></summary></entry><entry><title type="html">AirSim：人工势场法避障</title><link href="http://localhost:4000/airsim/APF-test/" rel="alternate" type="text/html" title="AirSim：人工势场法避障" /><published>2024-03-02T00:00:00+08:00</published><updated>2024-03-02T00:00:00+08:00</updated><id>http://localhost:4000/airsim/APF-test</id><content type="html" xml:base="http://localhost:4000/airsim/APF-test/"><![CDATA[<p>参考一些已有的工作，在 AirSim 中实现了基于人工势场法（Artificial Potential Field, APF）和 LQR 控制的无人机避障任务仿真。</p>
 
 <hr />
 
