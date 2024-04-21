@@ -1,5 +1,103 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-04-09T20:22:13+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Leighton’s Blog</title><subtitle>Learning &amp; Sharing
-</subtitle><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><entry><title type="html">日本之行 关东篇</title><link href="http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-japan-kantou/" rel="alternate" type="text/html" title="日本之行 关东篇" /><published>2024-04-08T00:00:00+08:00</published><updated>2024-04-08T00:00:00+08:00</updated><id>http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-japan-kantou</id><content type="html" xml:base="http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-japan-kantou/"><![CDATA[<p>自寒假写了关西的游记后，由于懒癌晚期一直没有把关东篇也写掉。在这毕设中期答辩憋不出几个字的今天，把这个坑先给挖开。</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-04-21T21:20:53+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Leighton’s Blog</title><subtitle>Learning &amp; Sharing
+</subtitle><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><entry><title type="html">Raspberry Pi 的重装（有网线，无显示屏）</title><link href="http://localhost:4000/misc/raspberryPi/" rel="alternate" type="text/html" title="Raspberry Pi 的重装（有网线，无显示屏）" /><published>2024-04-21T00:00:00+08:00</published><updated>2024-04-21T00:00:00+08:00</updated><id>http://localhost:4000/misc/raspberryPi</id><content type="html" xml:base="http://localhost:4000/misc/raspberryPi/"><![CDATA[<p>毕设开始做实验了！</p>
+
+<p>两周前从老师那拿到一块 Raspberry Pi，今天准备在上边跑一组实验。然而这块板子早已成为别人的形状，用户名和密码都无从得知，遂重装系统。过程中遇到很多奇怪的问题，在此作记录。</p>
+
+<hr />
+
+<h1 id="我的设备">我的设备</h1>
+<p>我有以下设备：</p>
+<ul>
+  <li>Raspberry 4B 一块（老师给的，通过对比图片得知型号）</li>
+  <li>网线一根（也是老师给的）</li>
+  <li>USB-C 充电器一个（还是老师给的，用着没问题，似乎建议使用原装）</li>
+  <li>SD 卡读卡器一个（学校数码店购入）</li>
+</ul>
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/misc/raspberrypi.jpg" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">我的 Raspberry Pi</div>
+</center>
+<p><br /></p>
+
+<hr />
+
+<h1 id="软件与系统准备">软件与系统准备</h1>
+<p>以下操作在自己的 PC 上完成。</p>
+
+<p>在 Raspberry Pi 官方网站上下载<a href="https://www.raspberrypi.com/software/">烧录工具</a> (Raspberry Pi Imager)，如下图</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/misc/Imager.png" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Raspberry Pi Imager</div>
+</center>
+<p><br /></p>
+
+<p>再在<a href="https://www.raspberrypi.com/software/operating-systems/">这里</a>下载系统。我选择的是最上方的 Raspberry Pi OS with desktop。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/misc/piOS.png" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Raspberry Pi Imager</div>
+</center>
+<p><br /></p>
+
+<hr />
+
+<h1 id="烧录-sd-卡">烧录 SD 卡</h1>
+<h2 id="格式化-sd-卡">格式化 SD 卡</h2>
+<p>首先需要格式化 SD 卡。网上很多教程说需要用什么第三方工具之类，经实测并不需要，直接在“此电脑”处右击 SD 卡对应的磁盘并选择格式化即可，文件系统选择 FAT32。</p>
+
+<h2 id="开始烧录">开始烧录</h2>
+<p>启动 Raspberry Pi Imager，如下图。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/misc/imagerSettings.png" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Raspberry Pi Imager</div>
+</center>
+<p><br />
+Raspberry Pi 选择自己的型号（我的是 4），需要写入的操作系统选择 cutsom，然后选择先前下载的 .img.xz 格式的文件，存储卡选择自己的 SD 卡即可。</p>
+
+<p>选择完成后点击 NEXT 开始烧录。可自定义用户名和密码，并开启 ssh 服务。等待烧录完成即可。</p>
+
+<hr />
+
+<h1 id="使用-ssh-连接到电脑">使用 ssh 连接到电脑</h1>
+<p>按照<a href="https://blog.csdn.net/wallace89/article/details/120473842">这篇博客</a>的教程设置网络共享，并将树莓派连接到电脑。然而尝试使用 ssh 连接时直接超时。使用读卡器查看 SD 卡内容，新建 ssh 文件（空文件，无后缀），再次尝试连接成功（原因未知），如图所示。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/misc/pi_cmd.png" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">PuTTY 通过 ssh 连接成功</div>
+</center>
+<p><br /></p>
+
+<p>ping 通外部网站，说明网络共享成功！</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/misc/pi_ping.png" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">PuTTY 通过 ssh 连接成功</div>
+</center>
+<p><br /></p>
+
+<p>此后计划在这块 Raspberry Pi 上进行试验。</p>]]></content><author><name>Leighton</name></author><category term="MISC" /><summary type="html"><![CDATA[毕设开始做实验了！]]></summary></entry><entry><title type="html">日本之行 关东篇</title><link href="http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-japan-kantou/" rel="alternate" type="text/html" title="日本之行 关东篇" /><published>2024-04-08T00:00:00+08:00</published><updated>2024-04-08T00:00:00+08:00</updated><id>http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-japan-kantou</id><content type="html" xml:base="http://localhost:4000/%E8%A1%8C%E4%B8%96%E8%B7%AF/trip-to-japan-kantou/"><![CDATA[<p>自寒假写了关西的游记后，由于懒癌晚期一直没有把关东篇也写掉。在这毕设中期答辩憋不出几个字的今天，把这个坑先给挖开。</p>
 
 <hr />
 
@@ -1538,163 +1636,4 @@ $$</div>
 <ul>
   <li>可以在 PX4 端输入命令以控制无人机，如 <code class="language-plaintext highlighter-rouge">commander takeoff</code> 可控制无人机起飞，<code class="language-plaintext highlighter-rouge">commander land</code> 可控制无人机降落。</li>
   <li>调用 Python API 的操作与使用 simple_flight 模式下相同，直接运行 Python 脚本即可！</li>
-</ul>]]></content><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><category term="AirSim" /><summary type="html"><![CDATA[今天被在 WSL2 上配置 PX4 困扰了许久，记录以下近几天解决该问题的过程。]]></summary></entry><entry><title type="html">SLAM技术学习：滤波</title><link href="http://localhost:4000/misc/filter/" rel="alternate" type="text/html" title="SLAM技术学习：滤波" /><published>2023-07-13T00:00:00+08:00</published><updated>2023-07-13T00:00:00+08:00</updated><id>http://localhost:4000/misc/filter</id><content type="html" xml:base="http://localhost:4000/misc/filter/"><![CDATA[<p>假期总该学点东西。对 SLAM 技术有一些兴趣，小开一个坑。</p>
-
-<h1 id="什么是-slam">什么是 SLAM</h1>
-<p>S.L.A.M.全称为Simultaneous Localization and Mapping，是以定位和建图两大技术为目标的一个研究领域。目前主流的SLAM技术应用为激光SLAM(基于激光雷达)和视觉SLAM(基于单/双目摄像头)，实现上主要分为基于滤波 （Filter-Based） 的SLAM，和基于图优化（Graph-Based）的SLAM。</p>
-
-<p>SLAM 的架构如下图所示。
-<img src="/assets/images/SLAM_arch.jpg" alt="" /></p>
-
-<h1 id="基于滤波的传感器融合算法方案">基于滤波的传感器融合算法方案</h1>
-<p>归结基于滤波的定位算法的核心技术，其实就是贝叶斯滤波或者其衍生算法。整体上的流程大抵都是基于上一时刻的状态量，通过控制量输入和运动方程的推演获取预测的状态量，再由相关传感器的观测对预测进行融合“补偿”。</p>
-
-<h1 id="滤波算法卡尔曼滤波">滤波算法：卡尔曼滤波</h1>
-<p>今天 <del>预习</del> 复习一下机器人综合实践课程中介绍的卡尔曼滤波算法。</p>
-
-<h3 id="滤波器">滤波器</h3>
-<p>在 DSP 中接触过滤波器。主要用于滤除信号中的噪声。以下面离散时间的低通滤波器为例：</p>
-
-<div class="kdmath">$$
-y_t=\alpha x_t + (1-\alpha)y_{t-1}
-$$</div>
-
-<p>它的截止频率为 $f_c=\frac{\alpha}{(1-\alpha)2\pi \Delta t}$。其中 $\Delta t$是采样周期。任何频率大于 $f_c$ 的信号通过该滤波器都会得到极大的衰减，可以用于滤除高频噪声。</p>
-
-<p>Kalman 滤波器则不同。它直接在时域中处理滤波问题，并且在线性系统下是最小方差估计。1960 年，时任美
-国宇航局加利福尼亚州 Ames Research Center（ARC）动力分析处主任的斯坦尼 • 施密特（Stanley F. Schmidt）正在阿波罗-11 号登月计划中主持导航项目。当年，宇宙飞船从陀螺仪、加速度计和雷达等传感器上获取的测量数据中充满了不确定性误差和随机噪声，严重地威胁着高速飞向月球并降落其岩石表面的宇宙飞船及宇航员的安全。因此他们必须从测量数据中把噪声滤掉，以便对飞船所处位置和运动速度作出非常精确的估算。经过多方认证和周密思考之后，施密特决定在阿波罗-11 号登月计划中采用 Kalman 滤波器，并成功让阿波罗-11 号在地球和月球之间飞了一个来回。</p>
-
-<h3 id="最小协方差估计与后验概率传递">最小协方差估计与后验概率传递</h3>
-<p>Kalman 滤波器是对信号的最小方差估计，其实现手段是通过迭代的方式计算隐 Markov 模型中隐状态的后验分布的数学期望。</p>
-
-<h3 id="kalman-滤波的数学原理">Kalman 滤波的数学原理</h3>
-<p><em>此处简化了推导，仅从噪声服从高斯分布的情况推导。事实上 Kalman 本人对于该滤波器的推导是基于 Hilbert 空间下的投影原理。</em></p>
-
-<p>假设现有下列隐 Markov 模型：</p>
-
-<p><span class="kdmath">$x_{t+1}=A_t x_t + Bu_t +w_t$</span>
-<span class="kdmath">$y_t=C_tx_t+v_t$</span></p>
-
-<p>其中 $x_t\in\mathbb R^n$ 为系统的状态；$y_t\in\mathbb R^p$ 为对系统的观测（或系统的输出），$w_t\sim \mathcal N(0,1)$ 为过程噪声，$v_t\sim\mathcal N(0,\Sigma_v)$ 为观测噪声；$w_t$ 和 $v_t$ 均为白噪声；初始状态的先验分布为 $x_1\sim\mathcal N(m_1,P_1)$。</p>
-
-<p>依据上述假设，可知</p>
-
-<div class="kdmath">$$
-\begin{align*}
-p(x_{t+1}|x_t,u_t)=\mathcal N(A_tx_t+Bu_t,\Sigma_w) \\
-p(y_t|x_t)=\mathcal N(C_tx_t,\Sigma_v)
-\end{align*}
-$$</div>
-
-<p>以下有两个引理，证明略。</p>
-
-<hr />
-
-<p><strong>Lemma 1</strong> 若 $x\in\mathbb R^{d_x}\sim\mathcal N(m,p),y\in\mathbb R^{d_y}|x \sim \mathcal N(Hx+u,R)$，则
-$x$ 和 $y$ 的联合分布服从</p>
-
-<div class="kdmath">$$
-\begin{bmatrix}
-x\\
-y
-\end{bmatrix}\sim\mathcal N\left(\begin{bmatrix}
-m\\
-Hm+u
-\end{bmatrix},\begin{bmatrix}
-P & PH^\top\\
-HP & HPH^\top+R
-\end{bmatrix}\right)
-$$</div>
-
-<p><strong>Lemma 2</strong> 如果随机向量 $x\in\mathbb R^n$ 和 $y\in\mathbb R^m$ 服从以下联合高斯分布</p>
-
-<div class="kdmath">$$
-\begin{bmatrix}
-x\\
-y
-\end{bmatrix}\sim\mathcal N\left(\begin{bmatrix}
-a\\
-b
-\end{bmatrix},\begin{bmatrix}
-A & C\\
-C^\top & B
-\end{bmatrix}\right)
-$$</div>
-
-<p>则</p>
-
-<div class="kdmath">$$
-\begin{align*}
-x\sim \mathcal N(a,A),\quad y\sim\mathcal N(b,B) \\
-x|y\sim\mathcal N(a+CB^{-1}(y-b),A-CB^{-1}C^\top)\\
-y|x\sim\mathcal N(b+C^\top A^{-1}(x-a),B-C^\top A^{-1}C)
-\end{align*}
-$$</div>
-
-<hr />
-
-<p>有了上述两个引理，我们可以在高斯噪声的假设下推导 Kalman 滤波器的迭代时。不妨假设
-$x_t|u_{1:t-1},y_{1:t}\sim \mathcal N(\hat x_{t|t},P_{t|t})$。由引理 1 可得</p>
-
-<div class="kdmath">$$
-\begin{align*}
-p(x_{t+1},x_t|u_{1:t},y_{1:t})&=p(x_{t+1}|x_t,u_t)p(x_t|u_{1:t-1},y_{1:t})\sim\mathcal N(A_tx_t+Bu_t,\Sigma_w)\mathcal N(\hat x_{t|t},P_{t|t}) \\
-&\sim\mathcal N\left( \begin{bmatrix}
-\hat x_{t|t} \\
-A_tx_{t|t}+Bu_t
-\end{bmatrix},\begin{bmatrix}
-P_{t|t} & P_{t|t}A_t^\top \\
-A_tP_{t|t} & A_tP_{t|t}A^\top+\Sigma_w
-\end{bmatrix}\right)
-\end{align*}
-$$</div>
-
-<p>由引理 2 可得</p>
-
-<div class="kdmath">$$
-p(x_{t+1}|u_{1:t},y_{1:t})=\mathcal N(A_t\hat x_{t|t}+Bu_t, A_tP_{t|t}A^\top+\Sigma_w)
-$$</div>
-
-<p>至此，我们得到了 Kalman 滤波器的前半部分 Prediction step:</p>
-
-<div class="kdmath">$$
-\begin{align*}
-\hat x_{t+1|t}=A_t\hat x_{t|t}+Bu_t \\
-P_{t+1|t}=A_tP_{t|t}A^\top+\Sigma_w
-\end{align*}
-$$</div>
-
-<p>另一方面，根据引理 1，有
-<span class="kdmath">$\begin{align*}
-p(x_{t+1},y_{t+1}|u_{1:t},y_{1:t}) &= p(y_{t+1}|x_{t+1})p(x_{t+1}|u_{1:t},y_{1:t}) \\
-&\sim\mathcal N(C_tx_t,\Sigma_v)\mathcal N(\hat x_{t+1|t},P_{t+1|t}) \\
-&=\mathcal N\left(\begin{bmatrix}
-\hat x_{t+1|t} \\
-C\hat x_{t+1|t}
-\end{bmatrix},\begin{bmatrix}
-P_{t+1|t} & P_{t+1|t} C^\top \\
-CP_{t+1|t} & CP_{t+1|t}C^\top+\Sigma_v
-\end{bmatrix}\right)
-\end{align*}$</span></p>
-
-<p>根据引理 2，可进一步求得后验概率分布</p>
-
-<div class="kdmath">$$
-p(x_{t+1}|u_{1:t},y_{1:t+1})=\mathcal N(\hat x_{t+1|t+1},P_{t+1|t+1})
-$$</div>
-
-<p>其中，</p>
-
-<div class="kdmath">$$
-\begin{align*}
-&\hat x_{t+1|t+1}=\hat x_{t+1|t}+P_{t+1|t} C^\top(CP_{t+1|t}C^\top+\Sigma_v)^{-1} (y_{t+1}-C\hat x_{t+1|t}) \\
-&P_{t+1|t+1}=P_{t+1|t}-P_{t+1|t}C^\top(CP_{t+1|t}C^\top+\Sigma_v)^{-1} C(P_{t+1|t})
-\end{align*}
-$$</div>
-
-<p>此即 Kalman 滤波器的后半部分 Correction (Update) Step。</p>
-
-<p>此，我们得到了 Kalman 滤波器的后半部分——Correction （Update）Step。Kalman 滤波器通过 Prediction step 和 Correction step 交替迭代，成功地通过 $p(x_t
-| u_{1:t−1}, y_{1:t})$ 来计算 $p(x_{t+1} | u_{1:t}
-, y_{1:t+1})$。值得注意的是，该算法需要一个初始分布 $p(x_1)$，用于求 $p(x_1 | y_1)$，
-所以我们需要指定 $x_1$ 的先验分布 $x_1\sim \mathcal N (m_1, P_1)$。</p>]]></content><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><category term="MISC" /><summary type="html"><![CDATA[假期总该学点东西。对 SLAM 技术有一些兴趣，小开一个坑。]]></summary></entry></feed>
+</ul>]]></content><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><category term="AirSim" /><summary type="html"><![CDATA[今天被在 WSL2 上配置 PX4 困扰了许久，记录以下近几天解决该问题的过程。]]></summary></entry></feed>
