@@ -1,5 +1,89 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-05-30T19:41:21+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Leighton’s Blog</title><subtitle>Learning &amp; Sharing
-</subtitle><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><entry><title type="html">Leetcode 刷题记录（更新于2024-05-30）</title><link href="http://localhost:4000/misc/leetcode/" rel="alternate" type="text/html" title="Leetcode 刷题记录（更新于2024-05-30）" /><published>2024-05-30T00:00:00+08:00</published><updated>2024-05-30T00:00:00+08:00</updated><id>http://localhost:4000/misc/leetcode</id><content type="html" xml:base="http://localhost:4000/misc/leetcode/"><![CDATA[<p>毕设答辩终于结束，可以做点自己的事情了。</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-08-14T14:22:42+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Leighton’s Blog</title><subtitle>Learning &amp; Sharing
+</subtitle><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><entry><title type="html">CUDA 编程</title><link href="http://localhost:4000/cuda%E7%BC%96%E7%A8%8B/CUDA-programming/" rel="alternate" type="text/html" title="CUDA 编程" /><published>2024-07-29T00:00:00+08:00</published><updated>2024-07-29T00:00:00+08:00</updated><id>http://localhost:4000/cuda%E7%BC%96%E7%A8%8B/CUDA-programming</id><content type="html" xml:base="http://localhost:4000/cuda%E7%BC%96%E7%A8%8B/CUDA-programming/"><![CDATA[<h1 id="可扩展编程模型">可扩展编程模型</h1>
+
+<p>多核 CPU 和多核 GPU 的出现意味着主流处理器芯片已成为并行系统。我们面临的挑战是如何开发应用软件，以透明的方式扩展其并行性，从而充分利用不断增加的处理器内核，就像三维图形应用软件以透明的方式扩展其并行性，以适应内核数量千差万别的多核 GPU 一样。CUDA 并行编程模型旨在克服这一挑战，同时为熟悉 C 等标准编程语言的程序员提供较低的学习曲线。</p>
+
+<p>CUDA并行编程的核心是三个关键的抽象概念:</p>
+<ul>
+  <li>线程组的层次结构 A hierarchy of thread groups</li>
+  <li>共享内存 Shared memories</li>
+  <li>障碍同步 Barrier synchronization</li>
+</ul>
+
+<p>这些抽象概念作为一组最小的语言扩展简单地暴露给程序员。</p>
+
+<p>这种可扩展的编程模型使 GPU 架构能够跨越广泛的市场范围，只需简单地调整多处理器和内存分区的数量即可。</p>
+
+<h2 id="核-kernels">核 Kernels</h2>
+<p>CUDA C++ 对 C++ 语言进行了扩展，允许用户定义被称作 <strong>核(Kernel)</strong> 的 C++ 函数。当 kernel 被调用时，它会被 $N$ 个 CUDA 线程并行地执行 $N$ 次，而在普通的 C++ 函数 (function) 中只会被执行一次。</p>
+
+<p>Kernel 由 <code class="language-plaintext highlighter-rouge">__global__</code> 声明符定义。对于每个 kernel 的调用，执行该 kernel 的 CUDA 线程数使用语法 <code class="language-plaintext highlighter-rouge">&lt;&lt;&lt;...&gt;&gt;&gt;</code> 给出。执行 kernel 的每个线程都有一个唯一的线程 ID，可通过内置变量在 kernel 中访问。举个例子：</p>
+
+<pre><code class="language-C++">∕∕ Kernel definition
+__global__ void VecAdd(float* A, float* B, float* C)
+{
+    int i = threadIdx.x; // threadIdx.x 即线程 ID
+    C[i] = A[i] + B[i];
+}
+
+int main()
+{
+    ...
+    ∕∕ Kernel invocation with N threads
+    VecAdd&lt;&lt;&lt;1, N&gt;&gt;&gt;(A, B, C);
+    ...
+}
+
+</code></pre>
+
+<h2 id="线程层次结构-thread-hierarchy">线程层次结构 Thread Hierarchy</h2>
+
+<p>对于CUDA的软件架构我们在逻辑上分为三个层次结构。从小到大依次是线程（thread）、线程块（thread block）、网格（grid）。根据 NVidia 提供的 CUDA 编程指导，三者间的关系为：</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">threadIdx</code> 是一个 3 分量向量，因此可以使用一维、二维或三维线程索引来识别线程，形成一个一维、二维或三维线程组成的块，称为<strong>线程块 (thread block)</strong>。这为调用向量、矩阵或体积等域中的元素进行计算提供了一种自然的方式。线程索引和线程 ID 之间的关系很简单： 对于一维程序块，它们是相同的；对于大小为 $(Dx, Dy)$ 的二维程序块，索引为 $(x, y)$ 的线程的线程 ID 是 $(x + y\cdot Dx)$；对于大小为 $(Dx, Dy, Dz)$ 的三维程序块，索引为 $(x, y, z)$ 的线程的线程 ID 是 $(x + y\cdot Dx + z\cdot Dx\cdot Dy)$。</li>
+  <li>线程块被组织成一维、二维或三维的线程块<strong>网格 (grid)</strong>。网格中线程块的数量通常由处理数据的大小决定，而处理数据的大小通常超过系统中处理器的数量。</li>
+</ul>
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/cuda/grid.png" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">层次关系</div>
+</center>
+<p><br /></p>
+
+<p>下例是在多个线程块中进行矩阵加法的一段代码：</p>
+<pre><code class="language-C++">// Kernel definition
+__global__ void MatAdd(float A[N][N], float B[N][N], float C[N][N])
+{
+    int i = blockIdx.x * blockDim.x + threadIdx.x;
+    int j = blockIdx.y * blockDim.y + threadIdx.y;
+    if (i &lt; N &amp;&amp; j &lt; N)
+        C[i][j] = A[i][j] + B[i][j];
+}
+
+int main()
+{
+...
+dim3 threadsPerBlock(16, 16);
+dim3 numBlocks(N ∕ threadsPerBlock.x, N ∕ threadsPerBlock.y);
+MatAdd&lt;&lt;&lt;numBlocks, threadsPerBlock&gt;&gt;&gt;(A, B, C);
+...
+}
+</code></pre>
+
+<p>«&lt;…»&gt; 语法中指定的每个网格的块数和每个块的线程数可以是 int 或 dim3 类型。二维区块或网格可按上例指定。</p>
+
+<p><code class="language-plaintext highlighter-rouge">blockIdx</code>是块（block）在整个网格（grid）中的位置，<code class="language-plaintext highlighter-rouge">blockDim.x</code>和<code class="language-plaintext highlighter-rouge">blockDim.y</code>是块在水平和竖直方向上的线程数，在这个例子中，它们的大小都是16。</p>
+
+<h3 id="线程块簇-thread-block-clusters">线程块簇 Thread Block Clusters</h3>
+
+<p>CUDA 编程还引入了一种可选择的层次结构，称为线程块簇（threa block clusters），由线程块组成。集群中的线程块也保证在 GPU 处理集群（GPU Processing Cluster, GPC）上共同调度。</p>
+
+<p>（最后更新于2024/08/14，待更新）</p>]]></content><author><name>Leighton</name></author><category term="CUDA编程" /><summary type="html"><![CDATA[可扩展编程模型]]></summary></entry><entry><title type="html">Leetcode 刷题记录（更新于2024-05-30）</title><link href="http://localhost:4000/misc/leetcode/" rel="alternate" type="text/html" title="Leetcode 刷题记录（更新于2024-05-30）" /><published>2024-05-30T00:00:00+08:00</published><updated>2024-05-30T00:00:00+08:00</updated><id>http://localhost:4000/misc/leetcode</id><content type="html" xml:base="http://localhost:4000/misc/leetcode/"><![CDATA[<p>毕设答辩终于结束，可以做点自己的事情了。</p>
 
 <p>深感自己码力不足，决定重拾 leetcode 刷题，找回一点码力和算法能力。</p>
 
@@ -1580,5 +1664,4 @@ $$</div>
   <li>在 <code class="language-plaintext highlighter-rouge">_layouts</code> 中需要目录的地方加上一行代码 <code class="language-plaintext highlighter-rouge">\{\% include toc.html html=content \%\}</code>（记得删掉转义字符即可）</li>
 </ul>
 
-<p>其实我想把目录做成放在页面侧边的 sticky 样式，但是我的前端水平和我本站贫瘠的内容不允许我多折腾，于是就此作罢，放在顶部也挺好的对吧 :)</p>]]></content><author><name>Leighton</name></author><category term="Jekyll" /><summary type="html"><![CDATA[之前添加各种功能的时候零散地写了几篇东西，似乎很没有条理的样子。以后博客建设的相关内容都会集中在这里，也许会持续更新( ᐛ )]]></summary></entry><entry><title type="html">博客的图片支持测试</title><link href="http://localhost:4000/jekyll/Image-Support/" rel="alternate" type="text/html" title="博客的图片支持测试" /><published>2023-12-12T00:00:00+08:00</published><updated>2023-12-12T00:00:00+08:00</updated><id>http://localhost:4000/jekyll/Image-Support</id><content type="html" xml:base="http://localhost:4000/jekyll/Image-Support/"><![CDATA[<p>根据 Jekyll 的官方文档尝试进行图片支持。一张都市天际线城市的轨交地图：
-<img src="/assets/images/RailwayMap.png" alt="有帮助的截图" /></p>]]></content><author><name>Leighton Wang</name><email>wtrwang7@sjtu.edu.cn</email></author><category term="Jekyll" /><summary type="html"><![CDATA[根据 Jekyll 的官方文档尝试进行图片支持。一张都市天际线城市的轨交地图：]]></summary></entry></feed>
+<p>其实我想把目录做成放在页面侧边的 sticky 样式，但是我的前端水平和我本站贫瘠的内容不允许我多折腾，于是就此作罢，放在顶部也挺好的对吧 :)</p>]]></content><author><name>Leighton</name></author><category term="Jekyll" /><summary type="html"><![CDATA[之前添加各种功能的时候零散地写了几篇东西，似乎很没有条理的样子。以后博客建设的相关内容都会集中在这里，也许会持续更新( ᐛ )]]></summary></entry></feed>

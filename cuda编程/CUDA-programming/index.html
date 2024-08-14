@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>CUDA 编程 | Leighton’s Blog</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="CUDA 编程" />
+<meta name="author" content="Leighton" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="可扩展编程模型" />
+<meta property="og:description" content="可扩展编程模型" />
+<link rel="canonical" href="http://localhost:4000/cuda%E7%BC%96%E7%A8%8B/CUDA-programming/" />
+<meta property="og:url" content="http://localhost:4000/cuda%E7%BC%96%E7%A8%8B/CUDA-programming/" />
+<meta property="og:site_name" content="Leighton’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-07-29T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="CUDA 编程" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Leighton"},"dateModified":"2024-07-29T00:00:00+08:00","datePublished":"2024-07-29T00:00:00+08:00","description":"可扩展编程模型","headline":"CUDA 编程","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/cuda%E7%BC%96%E7%A8%8B/CUDA-programming/"},"url":"http://localhost:4000/cuda%E7%BC%96%E7%A8%8B/CUDA-programming/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Leighton&apos;s Blog" />
+<link rel="icon" type="image/png" sizes="16x16"  href="/favicons/favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff"></head>
+<body><header class="site-header">
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      inlineMath: [['$','$']]
+    }
+  });
+</script>
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Leighton&#39;s Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">关于本站</a><a class="page-link" href="/categories/">归档</a></div>
+      </nav></div>
+</header>
+<script>
+      document.addEventListener("scroll", function () {
+        var scrollPosition = window.scrollY;
+  
+        // 设置一个阈值，当滚动超过这个值时，添加滚动后的样式
+        var threshold = 100;
+  
+        var header = document.querySelector(".site-header");
+  
+        if (scrollPosition > threshold) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+    </script>
+
+    <div class="page-header"></div>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">CUDA 编程</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2024-07-29T00:00:00+08:00" itemprop="datePublished">
+        Jul 29, 2024
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Leighton</span></span></p>
+
+      
+		  <div class="blog-tags">
+		  归档：<a href="/categories/#CUDA编程">CUDA编程</a></div></header>
+
+  <HR>
+  <p>目录</p>
+  <ul><li><a href="#可扩展编程模型">可扩展编程模型</a><ul><li><a href="#核-kernels">核 Kernels</a></li><li><a href="#线程层次结构-thread-hierarchy">线程层次结构 Thread Hierarchy</a><ul><li><a href="#线程块簇-thread-block-clusters">线程块簇 Thread Block Clusters</a></li></ul></li></ul></li></ul>
+  <HR>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="可扩展编程模型">可扩展编程模型</h1>
+
+<p>多核 CPU 和多核 GPU 的出现意味着主流处理器芯片已成为并行系统。我们面临的挑战是如何开发应用软件，以透明的方式扩展其并行性，从而充分利用不断增加的处理器内核，就像三维图形应用软件以透明的方式扩展其并行性，以适应内核数量千差万别的多核 GPU 一样。CUDA 并行编程模型旨在克服这一挑战，同时为熟悉 C 等标准编程语言的程序员提供较低的学习曲线。</p>
+
+<p>CUDA并行编程的核心是三个关键的抽象概念:</p>
+<ul>
+  <li>线程组的层次结构 A hierarchy of thread groups</li>
+  <li>共享内存 Shared memories</li>
+  <li>障碍同步 Barrier synchronization</li>
+</ul>
+
+<p>这些抽象概念作为一组最小的语言扩展简单地暴露给程序员。</p>
+
+<p>这种可扩展的编程模型使 GPU 架构能够跨越广泛的市场范围，只需简单地调整多处理器和内存分区的数量即可。</p>
+
+<h2 id="核-kernels">核 Kernels</h2>
+<p>CUDA C++ 对 C++ 语言进行了扩展，允许用户定义被称作 <strong>核(Kernel)</strong> 的 C++ 函数。当 kernel 被调用时，它会被 $N$ 个 CUDA 线程并行地执行 $N$ 次，而在普通的 C++ 函数 (function) 中只会被执行一次。</p>
+
+<p>Kernel 由 <code class="language-plaintext highlighter-rouge">__global__</code> 声明符定义。对于每个 kernel 的调用，执行该 kernel 的 CUDA 线程数使用语法 <code class="language-plaintext highlighter-rouge">&lt;&lt;&lt;...&gt;&gt;&gt;</code> 给出。执行 kernel 的每个线程都有一个唯一的线程 ID，可通过内置变量在 kernel 中访问。举个例子：</p>
+
+<pre><code class="language-C++">∕∕ Kernel definition
+__global__ void VecAdd(float* A, float* B, float* C)
+{
+    int i = threadIdx.x; // threadIdx.x 即线程 ID
+    C[i] = A[i] + B[i];
+}
+
+int main()
+{
+    ...
+    ∕∕ Kernel invocation with N threads
+    VecAdd&lt;&lt;&lt;1, N&gt;&gt;&gt;(A, B, C);
+    ...
+}
+
+</code></pre>
+
+<h2 id="线程层次结构-thread-hierarchy">线程层次结构 Thread Hierarchy</h2>
+
+<p>对于CUDA的软件架构我们在逻辑上分为三个层次结构。从小到大依次是线程（thread）、线程块（thread block）、网格（grid）。根据 NVidia 提供的 CUDA 编程指导，三者间的关系为：</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">threadIdx</code> 是一个 3 分量向量，因此可以使用一维、二维或三维线程索引来识别线程，形成一个一维、二维或三维线程组成的块，称为<strong>线程块 (thread block)</strong>。这为调用向量、矩阵或体积等域中的元素进行计算提供了一种自然的方式。线程索引和线程 ID 之间的关系很简单： 对于一维程序块，它们是相同的；对于大小为 $(Dx, Dy)$ 的二维程序块，索引为 $(x, y)$ 的线程的线程 ID 是 $(x + y\cdot Dx)$；对于大小为 $(Dx, Dy, Dz)$ 的三维程序块，索引为 $(x, y, z)$ 的线程的线程 ID 是 $(x + y\cdot Dx + z\cdot Dx\cdot Dy)$。</li>
+  <li>线程块被组织成一维、二维或三维的线程块<strong>网格 (grid)</strong>。网格中线程块的数量通常由处理数据的大小决定，而处理数据的大小通常超过系统中处理器的数量。</li>
+</ul>
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/cuda/grid.png" />
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">层次关系</div>
+</center>
+<p><br /></p>
+
+<p>下例是在多个线程块中进行矩阵加法的一段代码：</p>
+<pre><code class="language-C++">// Kernel definition
+__global__ void MatAdd(float A[N][N], float B[N][N], float C[N][N])
+{
+    int i = blockIdx.x * blockDim.x + threadIdx.x;
+    int j = blockIdx.y * blockDim.y + threadIdx.y;
+    if (i &lt; N &amp;&amp; j &lt; N)
+        C[i][j] = A[i][j] + B[i][j];
+}
+
+int main()
+{
+...
+dim3 threadsPerBlock(16, 16);
+dim3 numBlocks(N ∕ threadsPerBlock.x, N ∕ threadsPerBlock.y);
+MatAdd&lt;&lt;&lt;numBlocks, threadsPerBlock&gt;&gt;&gt;(A, B, C);
+...
+}
+</code></pre>
+
+<p>«&lt;…»&gt; 语法中指定的每个网格的块数和每个块的线程数可以是 int 或 dim3 类型。二维区块或网格可按上例指定。</p>
+
+<p><code class="language-plaintext highlighter-rouge">blockIdx</code>是块（block）在整个网格（grid）中的位置，<code class="language-plaintext highlighter-rouge">blockDim.x</code>和<code class="language-plaintext highlighter-rouge">blockDim.y</code>是块在水平和竖直方向上的线程数，在这个例子中，它们的大小都是16。</p>
+
+<h3 id="线程块簇-thread-block-clusters">线程块簇 Thread Block Clusters</h3>
+
+<p>CUDA 编程还引入了一种可选择的层次结构，称为线程块簇（threa block clusters），由线程块组成。集群中的线程块也保证在 GPU 处理集群（GPU Processing Cluster, GPC）上共同调度。</p>
+
+<p>（最后更新于2024/08/14，待更新）</p>
+
+  </div><a class="u-url" href="/cuda%E7%BC%96%E7%A8%8B/CUDA-programming/" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <!-- <p class="feed-subscribe">
+          <a href="http://localhost:4000/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p> -->
+        <ul class="contact-list">
+          <li class="p-name">Leighton Wang</li>
+          <li><a class="u-email" href="mailto:wtrwang7@sjtu.edu.cn">wtrwang7@sjtu.edu.cn</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Learning &amp; Sharing
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li>
+  <a rel="me" href="https://github.com/LeightonWang" target="_blank" title="github">
+    <svg class="svg-icon grey">
+      <use xlink:href="/assets/minima-social-icons.svg#github"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://space.bilibili.com/8367854" target="_blank" title="youtube">
+    <svg class="svg-icon grey">
+      <use xlink:href="/assets/minima-social-icons.svg#youtube"></use>
+    </svg>
+  </a>
+</li>
+</ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
