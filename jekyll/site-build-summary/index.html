@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="zh"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
@@ -103,19 +103,19 @@
     </code></pre></figure>
 
 <ul>
-  <li>添加 MathJax 支持，做法为在 <code class="language-plaintext highlighter-rouge">\_includes\head.html</code> 中添加以下代码：</li>
-</ul>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">script</span> <span class="n">src</span><span class="o">=</span><span class="s2">"https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"</span> <span class="n">type</span><span class="o">=</span><span class="s2">"text/javascript"</span><span class="o">&gt;&lt;</span><span class="sr">/script&gt;
-&lt;script type="text/x</span><span class="o">-</span><span class="n">mathjax</span><span class="o">-</span><span class="n">config</span><span class="s2">"&gt;
-  MathJax.Hub.Config({
-    tex2jax: {
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-      inlineMath: [['$','$']]
-    }
-  });
+  <li>添加 MathJax 支持，做法为在 <code class="language-plaintext highlighter-rouge">\_includes\head.html</code> 中添加以下代码：
+    <pre><code class="language-HTML">&lt;script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"&gt;&lt;/script&gt;
+&lt;script type="text/x-mathjax-config"&gt;
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    inlineMath: [['$','$']]
+  }
+});
 &lt;/script&gt;
-    </span></code></pre></figure>
+</code></pre>
+  </li>
+</ul>
 
 <p>现在我们可以愉快地书写数学公式啦！</p>
 <ul>

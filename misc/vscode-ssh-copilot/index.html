@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="zh"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
@@ -86,7 +86,7 @@
 
   <HR>
   <p>目录</p>
-  <ul><li><a href="#问题发现与报错信息">问题发现与报错信息</a></li><li><a href="#原理探究">原理探究</a></li><li><a href="#参考资料">参考资料</a></li></ul>
+  <ul><li><a href="#问题发现与报错信息">问题发现与报错信息</a></li><li><a href="#解决方法">解决方法</a></li><li><a href="#原理探究">原理探究</a></li><li><a href="#参考资料">参考资料</a></li></ul>
   <HR>
 
   <div class="post-content e-content" itemprop="articleBody">
@@ -98,6 +98,7 @@
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/assets/images/misc/copilot_error.png" />
+    <br />
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
@@ -106,24 +107,25 @@
 
 <p>在 VSCode 的输出面板中查看 GitHub Copilot 的日志，发现有如下错误信息：</p>
 
-<p>```plain text
-2025-06-01 11:22:13.198 [info] activationBlocker from ‘languageModelAccess’ took for 8016ms
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2025-06-01 11:22:13.198 [info] activationBlocker from 'languageModelAccess' took for 8016ms
 2025-06-01 11:22:29.969 [error] TypeError: fetch failed
     at node:internal/deps/undici/undici:13502:13
     at processTicksAndRejections 
-…</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-与此同时，在本地 VSCode 中使用 Copilot 一切正常，说明问题大概是出在 remote SSH 的配置或网络连接上。
-
-# 解决方法
-经过查询和尝试，最终的解决方法是在 VSCode 中打开 `settings.json` 文件，添加以下内容：
-```json
-    "remote.extensionKind": {
-        "GitHub.copilot": ["ui"],
-        "GitHub.copilot-chat": ["ui"],
-    },
 </code></pre></div></div>
+
+<p>与此同时，在本地 VSCode 中使用 Copilot 一切正常，说明问题大概是出在 remote SSH 的配置或网络连接上。</p>
+
+<h1 id="解决方法">解决方法</h1>
+<p>经过查询和尝试，最终的解决方法是在 VSCode 中打开 <code class="language-plaintext highlighter-rouge">settings.json</code> 文件，添加以下内容：</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">    </span><span class="nl">"remote.extensionKind"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"GitHub.copilot"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"ui"</span><span class="p">],</span><span class="w">
+        </span><span class="nl">"GitHub.copilot-chat"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"ui"</span><span class="p">],</span><span class="w">
+    </span><span class="p">}</span><span class="err">,</span><span class="w">
+</span></code></pre></div></div>
+
 <p>添加后的 <code class="language-plaintext highlighter-rouge">settings.json</code> 应如：</p>
+
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="err">//</span><span class="w"> </span><span class="err">其他设置...</span><span class="w">
     </span><span class="nl">"remote.extensionKind"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -132,6 +134,7 @@
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
+
 <p>重新启动远程连接，GitHub Copilot 的自动补全和对话功能就可以正常使用了。</p>
 
 <h1 id="原理探究">原理探究</h1>
